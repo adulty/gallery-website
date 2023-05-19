@@ -1,7 +1,7 @@
-# School Website
-Website sekolah dengan menggunakan framework CodeIgniter ini memiliki tampilan yang sederhana dan fitur yang mampu berfungsi dengan baik.
+# TEFA RPL SMK 1 TRIPLE "J"
+Website TEFA RPL yang dibuat dengan CodeIgniter sebagai penyelesai tugas untuk Kelompok 1 PKL MANDIRI bersama PT BONET UTAMA Tahun 2023
 
-To access admin page, add url /admin. Example http://localhost/school-website-master/admin
+To access admin page, add url /admin. Example http://localhost/tefa-website/admin
 
 ## Tampilan Aplikasi
 ![ss](asset/ss1.png)
@@ -12,7 +12,7 @@ To access admin page, add url /admin. Example http://localhost/school-website-ma
 ## Admin Account
 |    Username    | Password |
 |:--------------:|---------:|
-| admin@mail.com | admin123 |
+| admin@admin.com | password |
 
 
 Tools:
