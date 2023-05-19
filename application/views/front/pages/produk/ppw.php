@@ -9,7 +9,10 @@
 <!-- Content -->
 <div class="content mt-5 mb-5">
 	<div class="container text-center">
-		<img src="<?= base_url('img/jurusan/ppw.jpg') ?>" class="img-fluid">
+		<img src="<?= base_url('img/jurusan/ppw.jpg') ?>" class="img-fluid" style="margin-buttom: 20px;">
+		<p>Perancangan dan pembuatan website adalah proses yang melibatkan pembuatan dan pengembangan sebuah halaman web yang dapat diakses melalui internet. Website merupakan wadah digital yang memungkinkan individu, bisnis, atau organisasi untuk mempresentasikan informasi, produk, atau layanan mereka kepada khayalak luas.</p>
+		<br>
+		<p>Perancangan website dimulai dengan tahap perencanaan yang melibatkan identifikasi tujuan, audiens target, dan konten yang akan disajikan. Penting untuk memahami kebutuhan pengguna dan menciptakan antarmuka yang intuitif dan responsif. Selanjutnya, perancang website akan membuat wireframe atau rancangan awal yang menggambarkan struktur dan tata letak halaman.</p>
 	</div>
 </div>
 <!-- End of Content -->
