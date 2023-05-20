@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<h2>Struktur Organisasi</h2>
+			<h2>Struktur TEFA</h2>
 		</div>
 	</div>
 

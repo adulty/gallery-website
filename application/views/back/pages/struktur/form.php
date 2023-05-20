@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row mb-4">
 		<div class="col">
-			<h3>Form Struktur Organisasi Sekolah</h3>
+			<h3>Form Struktur TEFA</h3>
 		</div>
 	</div>
 

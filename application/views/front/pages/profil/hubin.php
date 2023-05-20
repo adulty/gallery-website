@@ -12,10 +12,13 @@
 		<div class="row text-center">
 			<?php foreach($hubin as $h) : ?>
 				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 p-2 my-4">
-					<h5 class="text-center"><a href="http://www.bonet.co.id" target="_blank"><?= $h->name ?></a></h5>
+					<h5 class="text-center"><?= $h->name ?></h5>
 					<a href="<?= base_url('img/hubin/' . $h->photo) ?>" target="_blank">
 						<img style="height:180px" src="<?= base_url('img/hubin/' . $h->photo) ?>" class="img-thumbnail">
 					</a>
+					<h6>
+					<a href="http://<?= $h->website ?>" target="_blank" rel="noopener noreferrer"><?= $h->website ?></a>
+					</h6>
 				</div>
 			<?php endforeach ?>			
 		</div>
