@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2022 at 10:34 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.3.33
+-- Generation Time: May 20, 2023 at 02:48 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,9 +57,9 @@ CREATE TABLE `banners` (
 --
 
 INSERT INTO `banners` (`id`, `title`, `text`, `photo`) VALUES
-(1, 'Belajar tidak akan pernah membuat lelah', '\"Pendidikan adalah bekal terbaik untuk perjalanan hidup.\" ', '261feb1a6d3dd22b7ce8e65a52b6aeb5.jpg'),
-(2, 'Menuntut Ilmu Sedalam Mungkin', '\"Belajar memang melelahkan, namun akan lebih melelahkan lagi jika saat ini kamu tidak belajar.\"', 'e9f0e154d0e7bc5ba126983c8265b005.jpg'),
-(3, 'Terus Maju', ' \"Jangan membuang waktu belajarmu karena apa yang kamu pelajari akan berguna untuk masa depanmu.\"', '2fe30f923448bd85d4401210f5620694.jpg');
+(1, 'Belajar tidak membuatmu rugi', '\"hidup dengan kebodohan lebih buruk dari hidup penuh dengan ketidaketahuan.\" ', '19ca6581f8162a827e7d71c635a80c52.jpg'),
+(2, 'Menuntut Ilmu Sedalam Mungkin', '\"Belajar memang melelahkan, namun akan lebih melelahkan lagi jika saat ini kamu tidak belajar.\"', 'c9a5c067cc0d52d0c3d86972fba1fcd9.jpg'),
+(3, 'Terus Maju', ' \"Jangan membuang waktu belajarmu karena apa yang kamu pelajari akan berguna untuk masa depanmu.\"', '9e9dd884b459dd84c1e995bd9e58eaf9.jpg');
 
 -- --------------------------------------------------------
 
@@ -77,30 +77,21 @@ CREATE TABLE `bg_majors` (
 --
 
 INSERT INTO `bg_majors` (`id`, `photo`) VALUES
-(1, 'b33cf167c20cef419c93c4b9ee494b0a.png');
+(1, '4dfdb28ddb055c58b1e92933c35e3079.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facilities`
+-- Table structure for table `comments`
 --
 
-CREATE TABLE `facilities` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `photo` varchar(100) NOT NULL
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `comment` varchar(250) NOT NULL,
+  `status` enum('Active','Block') NOT NULL DEFAULT 'Active',
+  `created_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `facilities`
---
-
-INSERT INTO `facilities` (`id`, `name`, `photo`) VALUES
-(3, 'Lab Komputer', 'lab-komputer-20220825185508.jpg'),
-(4, 'Perpustakaan', 'perpustakaan-20220825190131.png'),
-(5, 'Kantin', 'kantin-20220825190142.png'),
-(6, 'Lapangan', 'lapangan-20220825190202.png'),
-(9, 'Musholla', 'musholla-20200430120051.jpg');
 
 -- --------------------------------------------------------
 
@@ -125,6 +116,27 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hubins`
+--
+
+CREATE TABLE `hubins` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `photo` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hubins`
+--
+
+INSERT INTO `hubins` (`id`, `name`, `photo`) VALUES
+(3, 'PT BONET UTAMA', 'pt-bonet-utama-20230512090107.png'),
+(4, 'PT ASKI (PT Astra Komponen Indonesia)', 'pt-aski-pt-astra-komponen-indonesia-20230512090240.jpg'),
+(11, 'Universitas Pertahanan Republik Indonesia (UNHAN)', 'universitas-pertahanan-republik-indonesia-unhan-20230512090717.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `identity`
 --
 
@@ -141,7 +153,7 @@ CREATE TABLE `identity` (
 --
 
 INSERT INTO `identity` (`id`, `meta_title`, `meta_description`, `meta_keyword`, `photo`) VALUES
-(1, '', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus.', 'Madrasah Aliyah Negeri Pati', '18efe02e7fcc5c6a4ee8c619e501a7d9.png');
+(1, '', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus.', 'TEFA SMK 1 TRIPLE \"J\"', '18efe02e7fcc5c6a4ee8c619e501a7d9.png');
 
 -- --------------------------------------------------------
 
@@ -155,14 +167,6 @@ CREATE TABLE `login_attempts` (
   `login` varchar(100) NOT NULL,
   `time` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `login_attempts`
---
-
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(1, '::1', 'administrator', 1661414832),
-(2, '::1', 'admin@gmail.com', 1661414865);
 
 -- --------------------------------------------------------
 
@@ -196,9 +200,8 @@ CREATE TABLE `menus` (
 
 INSERT INTO `menus` (`id`, `user_id`, `title`, `url`, `icon`, `is_active`) VALUES
 (1, 2, 'Pengaturan Web', '', 'fas fa-fw fa-cog', 'Y'),
-(2, 2, 'Agenda', 'jadwal', 'fas fa-fw fa-users', 'Y'),
 (3, 2, 'Manajemen Media', '', 'fas fa-fw fa-school', 'Y'),
-(4, 2, 'Struktur Organisasi', 'struktur', 'fas fa-fw fa-sitemap', 'Y'),
+(4, 2, 'Struktur TEFA', 'struktur', 'fas fa-fw fa-sitemap', 'Y'),
 (5, 1, 'Manajemen User', 'user', 'fas fa-fw fa-user', 'Y'),
 (6, 2, 'Profile', '', 'fas fa-fw fa-home', 'Y');
 
@@ -219,7 +222,36 @@ CREATE TABLE `opening` (
 --
 
 INSERT INTO `opening` (`id`, `content`, `photo`) VALUES
-(1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus. Mauris non dolor laoreet, efficitur ligula eget, suscipit ipsum. Praesent porttitor sollicitudin magna maximus pharetra. Nullam pretium vestibulum augue, sed viverra velit gravida vel.', '92d81dcc1fc0dceb8b582fc271d48a76.png');
+(1, 'TEFA RPL SMK 1 TRIPLE “J” ini bertujuan untuk meningkatkan kompetensi siswa/siswi \r\nsecara langsung melalui perusahaan atau industri yang  terkait.\r\ndidalam tefa juga siswa/siswi tidak hanya memperaktikan Soft Skill dalam pembelajaran,\r\nada juga belajar untuk dapat bekerja secara tim, melatih kemampuan komunikasi secara interpersonal, siswa/siswi juga mendapatkan pengalaman secara langsung dan latihan bekerja untuk memasuki dunia kerja nantinya, dan dapat menjembatani kesenjangan kompetensi antara kebutuhan industri dan pengetahuan sekolah untuk menyadarkan bahwa mengajar siswa/siswi seharusnya lebih dari sekedar apa yang terdapat dalam buku.', '92d81dcc1fc0dceb8b582fc271d48a76.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `portfolios`
+--
+
+CREATE TABLE `portfolios` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `seo_title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `photo` varchar(100) NOT NULL,
+  `is_active` char(1) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `portfolios`
+--
+
+INSERT INTO `portfolios` (`id`, `title`, `seo_title`, `content`, `photo`, `is_active`, `date`) VALUES
+(5, 'Aplikasi Perpustakaan Sekolah', 'aplikasi-perpustakaan-sekolah', 'Aplikasi Perpustakaan Sekolah ini di buat oleh siswa dan siswi SMK 1 Triple \'J\' Jurusan RPL (Rekayasa Perangkat Lunak). Aplikasi Perpustakaan Sekolah ini mempermudah murid atau guru untuk meminjam atau membaca buku dengan mudah dan di manapun dan kapanpun, Aplikasi ini juga mudah untuk di mengerti dari yang muda dan yang lansia. aplikasi inipun memiliki banyak sekali buku untuk di baca bisa untuk kalangan anak-anak, remaja,dewasa, dan lansia. Aplikasi Perpustakaan Sekolah selalu memiliki buku terbaru.', '-20230513093628.jpg', 'Y', '2023-05-13'),
+(6, 'Eat All Snake', 'eat-all-snake', 'Aplikasi Eat All Snake ini di buat oleh salah satu siswa SMK 1 Triple \'J\' Jurusan RPL (Rekayasa Perangkat Lunak). Eat All Snake ini adalah sebuah Game yang mudah di pahami, Eat All Snake juga  bisa di mainkan oleh semua kalangan, Eat All Snake Mudah dan Menyanangkan. ', '-20230513080815.jpg', 'Y', '2023-05-13'),
+(7, 'Aplikasi Ujian Berbasis Website', 'aplikasi-ujian-berbasis-website', 'Aplikasi Ujian Berbasis Website ini adalah Aplikasi yang di buat oleh siswa dan siswi SMK 1 Triple \'J\' Jurusan RPL (Rekayasa Perangkat Lunak) Dalam memecakan suatu masalah karna banyaknya murid yang mengeluh karna ujian sekolah offline, karna itu siswa dan siswi memecakan masalah dengan membuat suatu Aplikasi Website. Aplikasi ini juga memudahkan dalam ujian sekolah karna lebih aman dan bisa dimanapun. Aplikasi ini juga lebih modern.', '-20230513093658.jpg', 'Y', '2023-05-13'),
+(8, 'Aplikasi Website Sekolah', 'aplikasi-website-sekolah', 'Aplikasi Website Sekolah di buat oleh siswa dan siswi SMK 1 Triple \'J\' Jurusan RPL (Rekayasa Perangkat Lunak). Aplikasi ini di buat agar kita bisa melihat sekolah tanpa harus ke sekolah atau secara online hanya masuk ke Website Sekolah kita bisa lihat apa saja tentang sekolah. Aplikasi Website Sekolah ini mudah untuk di liat .', '-20230513080941.jpg', 'Y', '2023-05-13'),
+(9, 'Super Blowing', 'super-blowing', 'Aplikasi ini di buat oleh salah satu siswa SMK 1 Triple \'J\' Jurusan RPL(Rekayasa Perangkat Lunak). Aplikasi Super Blowing adalah sebuah Aplikasi Game untuk bermain, sangkat mudah untuk di mainkan dan mudah untuk di pahami permainannya. Aplikasi ini juga memiliki desain yang sangat unik. ', '-20230513081033.jpg', 'Y', '2023-05-13'),
+(10, 'Pengumpulan koin', 'pengumpulan-koin', 'Aplikasi Pengumpul Koin di buat oleh siswa dan siswi SMK 1 Triple \'J\' Jurusan RPL(Rekayasan Perangkat Lunak). Aplikasi ini adalah sebuah Game Pengumpul Koin yang sangkat mudah di mainkan untuk semua kalangan dan bisa membantu menghilangkan rasa penat dan gamood, Mudah dan Menyenangkan.', '-20230513081108.jpg', 'Y', '2023-05-13'),
+(11, 'Sistem Informasi Poin Pelanggaran Siswa', 'sistem-informasi-poin-pelanggaran-siswa', 'Aplikasi Sistem Informasi Poin Pelanggaran Siswa ini di buat oleh siswa dan siswi SMK 1 Triple \'J\' Jurusan RPL(Rekayasan Perangkat Lunak). Aplikasi ini di buat agar memudahkan Guru BK untuk memberi poin atau sangsi kepada murid yang melanggar, bisa kita lihat juga Pelanggaran apa saja yang tidak boleh di Langgar oleh siswa dan siswi.', '-20230513081132.jpg', 'Y', '2023-05-13');
 
 -- --------------------------------------------------------
 
@@ -242,13 +274,10 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `seo_title`, `content`, `photo`, `is_active`, `date`) VALUES
-(2, 'Sosialiasi Jasa Raharja', 'sosialiasi-jasa-raharja', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus. Mauris non dolor laoreet, efficitur ligula eget, suscipit ipsum. Praesent porttitor sollicitudin magna maximus pharetra. Nullam pretium vestibulum augue, sed viverra velit gravida vel. Nunc feugiat arcu vel urna lobortis mollis. Ut arcu augue, ullamcorper ut magna a, elementum aliquam nunc. Pellentesque sapien nibh, suscipit volutpat sem ut, vulputate efficitur arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean aliquet sagittis congue. Maecenas felis sem, interdum vel consectetur quis, vulputate in augue.</p>\r\n\r\n<p>Vestibulum massa dolor, sollicitudin eget nulla iaculis, tincidunt luctus lacus. Suspendisse nisi ligula, imperdiet eget tempor et, faucibus et orci. Pellentesque semper viverra metus, eget fermentum felis ornare at. In semper lacinia elit, eget consequat dolor blandit vitae. Aliquam erat volutpat. Aliquam et dictum erat. Etiam purus ipsum, convallis sit amet lorem eget, iaculis rhoncus arcu. Aliquam id fringilla magna, a euismod justo. Nam non urna feugiat ligula finibus blandit. Cras libero sapien, bibendum facilisis justo id, ultricies ullamcorper nisi.</p>\r\n\r\n<p>Maecenas condimentum aliquet pulvinar. Suspendisse quis malesuada nulla, eget eleifend tellus. Suspendisse pharetra enim in ante fermentum consectetur. Vivamus viverra, felis vitae condimentum tempus, libero ex consectetur dui, vel interdum nibh turpis in lectus. Suspendisse potenti. Nam sagittis, ligula id tempor tristique, enim eros facilisis purus, vitae elementum risus lectus sit amet ipsum. In nec sollicitudin massa, ut cursus purus. Proin eu tempor magna, non vestibulum diam.</p>', '-20220825184450.jpg', 'Y', '2022-08-25'),
-(3, 'Upacara Memeringati Hari Pramuka', 'upacara-memeringati-hari-pramuka', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus. Mauris non dolor laoreet, efficitur ligula eget, suscipit ipsum. Praesent porttitor sollicitudin magna maximus pharetra. Nullam pretium vestibulum augue, sed viverra velit gravida vel. Nunc feugiat arcu vel urna lobortis mollis. Ut arcu augue, ullamcorper ut magna a, elementum aliquam nunc. Pellentesque sapien nibh, suscipit volutpat sem ut, vulputate efficitur arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean aliquet sagittis congue. Maecenas felis sem, interdum vel consectetur quis, vulputate in augue.</p>\r\n\r\n<p>Vestibulum massa dolor, sollicitudin eget nulla iaculis, tincidunt luctus lacus. Suspendisse nisi ligula, imperdiet eget tempor et, faucibus et orci. Pellentesque semper viverra metus, eget fermentum felis ornare at. In semper lacinia elit, eget consequat dolor blandit vitae. Aliquam erat volutpat. Aliquam et dictum erat. Etiam purus ipsum, convallis sit amet lorem eget, iaculis rhoncus arcu. Aliquam id fringilla magna, a euismod justo. Nam non urna feugiat ligula finibus blandit. Cras libero sapien, bibendum facilisis justo id, ultricies ullamcorper nisi.</p>\r\n\r\n<p>Maecenas condimentum aliquet pulvinar. Suspendisse quis malesuada nulla, eget eleifend tellus. Suspendisse pharetra enim in ante fermentum consectetur. Vivamus viverra, felis vitae condimentum tempus, libero ex consectetur dui, vel interdum nibh turpis in lectus. Suspendisse potenti. Nam sagittis, ligula id tempor tristique, enim eros facilisis purus, vitae elementum risus lectus sit amet ipsum. In nec sollicitudin massa, ut cursus purus. Proin eu tempor magna, non vestibulum diam.</p>', '-20220825184340.jpg', 'Y', '2022-08-25'),
-(4, 'Bimbingan Teknis Implementasi Kurikulum Merdeka', 'bimbingan-teknis-implementasi-kurikulum-merdeka', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus. Mauris non dolor laoreet, efficitur ligula eget, suscipit ipsum. Praesent porttitor sollicitudin magna maximus pharetra. Nullam pretium vestibulum augue, sed viverra velit gravida vel. Nunc feugiat arcu vel urna lobortis mollis. Ut arcu augue, ullamcorper ut magna a, elementum aliquam nunc. Pellentesque sapien nibh, suscipit volutpat sem ut, vulputate efficitur arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean aliquet sagittis congue. Maecenas felis sem, interdum vel consectetur quis, vulputate in augue.</p>\r\n\r\n<p>Vestibulum massa dolor, sollicitudin eget nulla iaculis, tincidunt luctus lacus. Suspendisse nisi ligula, imperdiet eget tempor et, faucibus et orci. Pellentesque semper viverra metus, eget fermentum felis ornare at. In semper lacinia elit, eget consequat dolor blandit vitae. Aliquam erat volutpat. Aliquam et dictum erat. Etiam purus ipsum, convallis sit amet lorem eget, iaculis rhoncus arcu. Aliquam id fringilla magna, a euismod justo. Nam non urna feugiat ligula finibus blandit. Cras libero sapien, bibendum facilisis justo id, ultricies ullamcorper nisi.</p>\r\n\r\n<p>Maecenas condimentum aliquet pulvinar. Suspendisse quis malesuada nulla, eget eleifend tellus. Suspendisse pharetra enim in ante fermentum consectetur. Vivamus viverra, felis vitae condimentum tempus, libero ex consectetur dui, vel interdum nibh turpis in lectus. Suspendisse potenti. Nam sagittis, ligula id tempor tristique, enim eros facilisis purus, vitae elementum risus lectus sit amet ipsum. In nec sollicitudin massa, ut cursus purus. Proin eu tempor magna, non vestibulum diam.</p>', '-20220825184137.jpg', 'Y', '2022-08-25'),
-(5, 'Latihan Dasar Kepemimpinan', 'latihan-dasar-kepemimpinan', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus. Mauris non dolor laoreet, efficitur ligula eget, suscipit ipsum. Praesent porttitor sollicitudin magna maximus pharetra. Nullam pretium vestibulum augue, sed viverra velit gravida vel. Nunc feugiat arcu vel urna lobortis mollis. Ut arcu augue, ullamcorper ut magna a, elementum aliquam nunc. Pellentesque sapien nibh, suscipit volutpat sem ut, vulputate efficitur arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean aliquet sagittis congue. Maecenas felis sem, interdum vel consectetur quis, vulputate in augue.</p>\r\n\r\n<p>Vestibulum massa dolor, sollicitudin eget nulla iaculis, tincidunt luctus lacus. Suspendisse nisi ligula, imperdiet eget tempor et, faucibus et orci. Pellentesque semper viverra metus, eget fermentum felis ornare at. In semper lacinia elit, eget consequat dolor blandit vitae. Aliquam erat volutpat. Aliquam et dictum erat. Etiam purus ipsum, convallis sit amet lorem eget, iaculis rhoncus arcu. Aliquam id fringilla magna, a euismod justo. Nam non urna feugiat ligula finibus blandit. Cras libero sapien, bibendum facilisis justo id, ultricies ullamcorper nisi.</p>\r\n\r\n<p>Maecenas condimentum aliquet pulvinar. Suspendisse quis malesuada nulla, eget eleifend tellus. Suspendisse pharetra enim in ante fermentum consectetur. Vivamus viverra, felis vitae condimentum tempus, libero ex consectetur dui, vel interdum nibh turpis in lectus. Suspendisse potenti. Nam sagittis, ligula id tempor tristique, enim eros facilisis purus, vitae elementum risus lectus sit amet ipsum. In nec sollicitudin massa, ut cursus purus. Proin eu tempor magna, non vestibulum diam.</p>', '-20220825184811.jpg', 'Y', '2022-08-25'),
-(6, 'Upacara Memeringati Hari Kemerdekaan', 'upacara-memeringati-hari-kemerdekaan', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus. Mauris non dolor laoreet, efficitur ligula eget, suscipit ipsum. Praesent porttitor sollicitudin magna maximus pharetra. Nullam pretium vestibulum augue, sed viverra velit gravida vel. Nunc feugiat arcu vel urna lobortis mollis. Ut arcu augue, ullamcorper ut magna a, elementum aliquam nunc. Pellentesque sapien nibh, suscipit volutpat sem ut, vulputate efficitur arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean aliquet sagittis congue. Maecenas felis sem, interdum vel consectetur quis, vulputate in augue.</p>\r\n\r\n<p>Vestibulum massa dolor, sollicitudin eget nulla iaculis, tincidunt luctus lacus. Suspendisse nisi ligula, imperdiet eget tempor et, faucibus et orci. Pellentesque semper viverra metus, eget fermentum felis ornare at. In semper lacinia elit, eget consequat dolor blandit vitae. Aliquam erat volutpat. Aliquam et dictum erat. Etiam purus ipsum, convallis sit amet lorem eget, iaculis rhoncus arcu. Aliquam id fringilla magna, a euismod justo. Nam non urna feugiat ligula finibus blandit. Cras libero sapien, bibendum facilisis justo id, ultricies ullamcorper nisi.</p>\r\n\r\n<p>Maecenas condimentum aliquet pulvinar. Suspendisse quis malesuada nulla, eget eleifend tellus. Suspendisse pharetra enim in ante fermentum consectetur. Vivamus viverra, felis vitae condimentum tempus, libero ex consectetur dui, vel interdum nibh turpis in lectus. Suspendisse potenti. Nam sagittis, ligula id tempor tristique, enim eros facilisis purus, vitae elementum risus lectus sit amet ipsum. In nec sollicitudin massa, ut cursus purus. Proin eu tempor magna, non vestibulum diam.</p>', '-20220825184721.jpg', 'Y', '2022-08-25'),
-(7, 'Upacara Ulang Janji Pramuka', 'upacara-ulang-janji-pramuka', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus. Mauris non dolor laoreet, efficitur ligula eget, suscipit ipsum. Praesent porttitor sollicitudin magna maximus pharetra. Nullam pretium vestibulum augue, sed viverra velit gravida vel. Nunc feugiat arcu vel urna lobortis mollis. Ut arcu augue, ullamcorper ut magna a, elementum aliquam nunc. Pellentesque sapien nibh, suscipit volutpat sem ut, vulputate efficitur arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean aliquet sagittis congue. Maecenas felis sem, interdum vel consectetur quis, vulputate in augue.</p>\r\n\r\n<p>Vestibulum massa dolor, sollicitudin eget nulla iaculis, tincidunt luctus lacus. Suspendisse nisi ligula, imperdiet eget tempor et, faucibus et orci. Pellentesque semper viverra metus, eget fermentum felis ornare at. In semper lacinia elit, eget consequat dolor blandit vitae. Aliquam erat volutpat. Aliquam et dictum erat. Etiam purus ipsum, convallis sit amet lorem eget, iaculis rhoncus arcu. Aliquam id fringilla magna, a euismod justo. Nam non urna feugiat ligula finibus blandit. Cras libero sapien, bibendum facilisis justo id, ultricies ullamcorper nisi.</p>\r\n\r\n<p>Maecenas condimentum aliquet pulvinar. Suspendisse quis malesuada nulla, eget eleifend tellus. Suspendisse pharetra enim in ante fermentum consectetur. Vivamus viverra, felis vitae condimentum tempus, libero ex consectetur dui, vel interdum nibh turpis in lectus. Suspendisse potenti. Nam sagittis, ligula id tempor tristique, enim eros facilisis purus, vitae elementum risus lectus sit amet ipsum. In nec sollicitudin massa, ut cursus purus. Proin eu tempor magna, non vestibulum diam.</p>', '-20220825183746.jpg', 'Y', '2022-08-25'),
-(8, 'Bakti Sosial Peserta Didik ', 'bakti-sosial-peserta-didik', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nisl ut metus molestie dignissim eu vitae nisi. Phasellus molestie ut quam eu accumsan. Mauris sit amet orci a ante suscipit pharetra. Integer sodales, augue vel volutpat faucibus, nunc lectus feugiat mi, in vestibulum ex arcu commodo purus. Donec in sagittis enim, ac dignissim neque. Aenean nec quam a enim volutpat tempus. Cras eget ex lacus. Mauris non dolor laoreet, efficitur ligula eget, suscipit ipsum. Praesent porttitor sollicitudin magna maximus pharetra. Nullam pretium vestibulum augue, sed viverra velit gravida vel. Nunc feugiat arcu vel urna lobortis mollis. Ut arcu augue, ullamcorper ut magna a, elementum aliquam nunc. Pellentesque sapien nibh, suscipit volutpat sem ut, vulputate efficitur arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean aliquet sagittis congue. Maecenas felis sem, interdum vel consectetur quis, vulputate in augue.</p>\r\n\r\n<p>Vestibulum massa dolor, sollicitudin eget nulla iaculis, tincidunt luctus lacus. Suspendisse nisi ligula, imperdiet eget tempor et, faucibus et orci. Pellentesque semper viverra metus, eget fermentum felis ornare at. In semper lacinia elit, eget consequat dolor blandit vitae. Aliquam erat volutpat. Aliquam et dictum erat. Etiam purus ipsum, convallis sit amet lorem eget, iaculis rhoncus arcu. Aliquam id fringilla magna, a euismod justo. Nam non urna feugiat ligula finibus blandit. Cras libero sapien, bibendum facilisis justo id, ultricies ullamcorper nisi.</p>\r\n\r\n<p>Maecenas condimentum aliquet pulvinar. Suspendisse quis malesuada nulla, eget eleifend tellus. Suspendisse pharetra enim in ante fermentum consectetur. Vivamus viverra, felis vitae condimentum tempus, libero ex consectetur dui, vel interdum nibh turpis in lectus. Suspendisse potenti. Nam sagittis, ligula id tempor tristique, enim eros facilisis purus, vitae elementum risus lectus sit amet ipsum. In nec sollicitudin massa, ut cursus purus. Proin eu tempor magna, non vestibulum diam.</p>', '-20220825183547.jpg', 'Y', '2022-08-25');
+(10, 'Membuat Aplikasi Dengan Android Studio Bersama PT ASKII.', 'membuat-aplikasi-dengan-android-studio-bersama-pt-askii', 'siswa dan siswi SMK 1 Triple \'J\' kelas XI RPL (Rekayasa Perangkat Lunak) mendapatakan pembelajaran tentang pembuatan Aplikasi Android dengan menggunakan Android Studio di bimbing langsung oleh PT ASKII.', 'belajar-membuat-aplikasi-android-dengan-android-studio-bersama-pt-askii-20230512091500.jpg', 'Y', '2023-05-13'),
+(11, 'Belajar Membuat Website dengan Tailwind CSS bersama PT BONET UTAMA.', 'belajar-membuat-website-dengan-tailwind-css-bersama-pt-bonet-utama', 'Di sini  kami belajar tentang membuat suatu website dengan orang yang berpengalaman', 'belajar-membuat-website-dengan-tailwind-css-bersama-pt-bonet-utama-20230512091819.jpg', 'Y', '2023-05-13'),
+(12, 'Belajar dan Pemahaman Robotik dengan UNHAN RI.', 'belajar-dan-pemahaman-robotik-dengan-unhan-ri', 'SMK 1 Triple \'J\' Mendapatkan Bimbingan langsung dari cadet UNHAN RI(Universitas Pertahanan Republik Indonesia) Falkultas Sains dan Teknologi Pertahanan, khusunya bagi siswa dan siswi kelas X dan XI RPL(Rekayasa Perangkat Lunak) Tentang Robotik. Selama 8 - 19 Mei 2023.', '-20230512092235.jpg', 'Y', '2023-05-13'),
+(13, 'PKL Mandiri bersama dengan PT BONET UTAMA INDONESIA.', 'pkl-mandiri-bersama-dengan-pt-bonet-utama-indonesia', 'PKL(Praktek Kerja Lapangan), Mandiri ini adalah sebuah Program yang harus di Laksanakan oleh semua siswa dan siswi \r\nSMK 1 Triple \'J\', PKL Mandiri ini di Laksanakan adalah syarat khusus dari sekolah untuk kelulusan bagi siswa dan siswi SMK 1 Triple \'J\', PKL Mandiri Kelas XI RPL ini di bimbing langsung oleh PT BONET UTAMA INDONESIA.', 'pkl-mandiri-bersama-dengan-pt-bonet-utama-indonesia-20230512092432.jpg', 'Y', '2023-05-13');
 
 -- --------------------------------------------------------
 
@@ -266,7 +295,7 @@ CREATE TABLE `structure` (
 --
 
 INSERT INTO `structure` (`id`, `photo`) VALUES
-(1, 'c34d2f264a0bc5bf27b2f9e79efaa92e.png');
+(1, 'eaaa2adf57606ced8caa039d895331b1.png');
 
 -- --------------------------------------------------------
 
@@ -290,9 +319,10 @@ INSERT INTO `submenus` (`id`, `menu_id`, `sub_title`, `sub_url`, `is_active`) VA
 (1, 1, 'Identitas Web', 'identitas', 'Y'),
 (2, 1, 'Sambutan', 'sambutan', 'Y'),
 (3, 3, 'Banner', 'banner', 'Y'),
-(4, 3, 'Fasilitas', 'fasilitas', 'Y'),
+(4, 3, 'Hubungan Industri', 'hubin', 'Y'),
 (5, 3, 'Berita', 'berita', 'Y'),
-(6, 3, 'Background Jurusan', 'background', 'Y');
+(6, 3, 'Background Produk', 'background', 'Y'),
+(7, 3, 'Portfolio', 'portfolio', 'Y');
 
 -- --------------------------------------------------------
 
@@ -327,7 +357,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$12$pfe4X24wUalRwJseC96pLOh2FshRtmYVNRhS8eLTKCSv9KVXRWxBy', 'admin@mail.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1661443811, 1, 'Abid', 'Taufiqur R.', NULL, '081222332442');
+(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1683941858, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(3, '::1', 'tasyarojabilasamroi@mail.com', '$2y$10$ufb5qHckmFIQO0j06ACLhOVx/Bf8Z5C9xowPtUOZcIsEP.GOb.CMa', 'tasyarojabilasamroi@mail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1683943097, NULL, 1, 'gadun', 'rojak', NULL, '081511385307');
 
 -- --------------------------------------------------------
 
@@ -346,8 +377,9 @@ CREATE TABLE `users_groups` (
 --
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(38, 1, 1),
-(39, 1, 2);
+(1, 1, 1),
+(2, 1, 2),
+(42, 3, 1);
 
 --
 -- Indexes for dumped tables
@@ -372,15 +404,21 @@ ALTER TABLE `bg_majors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `facilities`
+-- Indexes for table `comments`
 --
-ALTER TABLE `facilities`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`);
 
 --
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hubins`
+--
+ALTER TABLE `hubins`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -411,6 +449,12 @@ ALTER TABLE `menus`
 -- Indexes for table `opening`
 --
 ALTER TABLE `opening`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `portfolios`
+--
+ALTER TABLE `portfolios`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -474,16 +518,22 @@ ALTER TABLE `bg_majors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `facilities`
+-- AUTO_INCREMENT for table `comments`
 --
-ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `hubins`
+--
+ALTER TABLE `hubins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `identity`
@@ -495,7 +545,7 @@ ALTER TABLE `identity`
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `majors`
@@ -516,10 +566,16 @@ ALTER TABLE `opening`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `portfolios`
+--
+ALTER TABLE `portfolios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `structure`
@@ -531,19 +587,19 @@ ALTER TABLE `structure`
 -- AUTO_INCREMENT for table `submenus`
 --
 ALTER TABLE `submenus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables
