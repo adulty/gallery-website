@@ -3,7 +3,7 @@
 	<!-- Sidebar - Brand -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('index.php/admin') ?>">
 		<div class="sidebar-brand-icon">
-			<i class="fab fa-artstation"></i>
+			<img src="<?= base_url('img/dashboard/logo_tefa.png')?>" alt="">
 		</div>
 		<div class="sidebar-brand-text mx-2"><?= $title; ?> - TEFA RPL</div>
 	</a>

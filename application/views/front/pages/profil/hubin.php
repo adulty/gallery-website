@@ -15,6 +15,7 @@
 					<h5 class="text-center"><a href="http://www.bonet.co.id" target="_blank"><?= $h->name ?></a></h5>
 					<a href="<?= base_url('img/hubin/' . $h->photo) ?>" target="_blank">
 						<img style="height:180px" src="<?= base_url('img/hubin/' . $h->photo) ?>" class="img-thumbnail">
+						
 					</a>
 				</div>
 			<?php endforeach ?>			

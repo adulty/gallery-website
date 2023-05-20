@@ -8,6 +8,7 @@
       <p>
             <?php echo lang('create_user_fname_label', 'first_name');?> <br />
             <?php echo form_input($first_name);?>
+            
       </p>
 
       <p>

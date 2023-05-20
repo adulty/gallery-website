@@ -23,4 +23,7 @@
   <!-- Costum CSS -->
   <link href="<?= base_url("asset/css/auth.css") ?>" rel="stylesheet">
 
+  <!-- Create User -->
+  <link href="<?= base_url("create_user.css") ?>" rel="stylesheet">
+
 </head>
