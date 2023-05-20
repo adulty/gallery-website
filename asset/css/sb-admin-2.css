@@ -6460,8 +6460,8 @@ button.bg-warning:focus {
   background-color: #f4b30d !important;
 }
 
-.bg-danger {
-  background-color: #e74a3b !important;
+.bg-white {
+  background-color: white !important;
 }
 
 a.bg-danger:hover, a.bg-danger:focus,
@@ -6490,8 +6490,8 @@ button.bg-dark:focus {
   background-color: #42444e !important;
 }
 
-.bg-white {
-  background-color: #fff !important;
+.bg-gradient-warning {
+  background-color: #b56830 !important;
 }
 
 .bg-transparent {

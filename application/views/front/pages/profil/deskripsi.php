@@ -9,7 +9,6 @@
 <!-- Content -->
 <div class="content mt-5 mb-5 pb-5 pt-5">
 	<div class="container">
-	<h4>A. Deskripsi TEFA</h4>
 	<i> Teaching Factory(TEFA)</i> adalah model pembelajaran SMK berbasis produksi / jasa yang mengacu pada standard dan prosedur yang berlaku di industry yang di laksankan pada suasana seperti di industry.
 <br>
 <br>

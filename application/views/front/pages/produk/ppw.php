@@ -10,6 +10,7 @@
 <div class="content mt-5 mb-5">
 	<div class="container text-center">
 		<img src="<?= base_url('img/jurusan/ppw.jpg') ?>" class="img-fluid">
+		<p></p>
 	</div>
 </div>
 <!-- End of Content -->

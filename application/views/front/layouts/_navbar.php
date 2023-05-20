@@ -18,7 +18,7 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 					<a class="dropdown-item" href="<?= base_url('index.php/profil/deskripsi') ?>">Deskripsi TEFA</a>
 					<a class="dropdown-item" href="<?= base_url('index.php/profil/visimisi') ?>">Visi & Misi</a>
-					<a class="dropdown-item" href="<?= base_url('profil/struktur') ?>">Struktur Organisasi</a>
+					<a class="dropdown-item" href="<?= base_url('profil/struktur') ?>">Struktur TEFA</a>
 					<a class="dropdown-item" href="<?= base_url('index.php/profil/hubin') ?>">Hubungan Industri</a>
 				</div>
 				</li>
@@ -32,9 +32,12 @@
 					<a class="dropdown-item" href="<?= base_url('index.php/produk/icl') ?>">Instalasi CCTV & LAN</a>
 				</div>
 				</li>
+				</li>
+				<li class="nav-item <?php if($title == 'Portfolio') echo "active"; ?>">
+				<a class="nav-link" href="<?= base_url('index.php/page') ?>">Portfolio</a>
+				</li>
 				<li class="nav-item <?php if($title == 'Berita') echo "active"; ?>">
 				<a class="nav-link" href="<?= base_url('index.php/blog') ?>">Berita</a>
-				</li>
 			</ul>
 		</div>
 	</div>

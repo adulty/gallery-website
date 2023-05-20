@@ -95,7 +95,7 @@ h3 {
  }
 /* End of Sambutan */
 
-/* Jurusan */
+/* Produk */
 .bg-cover {
    background-image: url('/img/banner/cca3fa09b3548e40e61eb437390b8480.jpg');
    background-position: center center;
@@ -107,8 +107,8 @@ h3 {
 
 .bg-cover img {
 	opacity: 0.9;
-	height: 100px;
-	width: 100px;
+	height: 250px;
+	width: 250px;
 }
 
 .bg-cover h2{
@@ -129,7 +129,7 @@ h3 {
 	color: white;
 	text-shadow: 2px 2px 1px black ;
 }
-/* End of Jurusan */
+/* End of Produk */
 
 /* Berita */
 .card {
