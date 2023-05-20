@@ -36,6 +36,14 @@
 			</div>
 		</div>
 
+		<div class="form-group row">
+			<label for="link" class="col-sm-2 col-form-label">Website</label>
+			<div class="col-sm-8">
+				<input type="text" name="website" id="link" value="<?= $input->website ?>" required class="form-control">
+				<?= form_error('website', '<small class="form-text text-danger">', '</small>') ?>
+			</div>
+		</div>
+
 		<div class="row mt-4">
 			<div class="col-8 offset-2">
 				<a href="<?= base_url('index.php/hubin') ?>" class="btn btn-sm btn-secondary"><i class="fas fa-angle-left mr-1"></i>Kembali</a>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2023 at 02:48 AM
+-- Generation Time: May 20, 2023 at 06:25 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_school`
+-- Database: `db_tefa`
 --
 
 -- --------------------------------------------------------
@@ -122,17 +122,18 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 CREATE TABLE `hubins` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `photo` varchar(100) NOT NULL
+  `photo` varchar(100) NOT NULL,
+  `website` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hubins`
 --
 
-INSERT INTO `hubins` (`id`, `name`, `photo`) VALUES
-(3, 'PT BONET UTAMA', 'pt-bonet-utama-20230512090107.png'),
-(4, 'PT ASKI (PT Astra Komponen Indonesia)', 'pt-aski-pt-astra-komponen-indonesia-20230512090240.jpg'),
-(11, 'Universitas Pertahanan Republik Indonesia (UNHAN)', 'universitas-pertahanan-republik-indonesia-unhan-20230512090717.png');
+INSERT INTO `hubins` (`id`, `name`, `photo`, `website`) VALUES
+(3, 'PT BONET UTAMA', 'pt-bonet-utama-20230512090107.png', 'www.bonet.co.id'),
+(4, 'PT ASKI (PT Astra Komponen Indonesia)', 'pt-aski-pt-astra-komponen-indonesia-20230512090240.jpg', 'www.astra-otoparts.com'),
+(11, 'Universitas Pertahanan Republik Indonesia (UNHAN)', 'universitas-pertahanan-republik-indonesia-unhan-20230512090717.png', 'www.idu.ac.id');
 
 -- --------------------------------------------------------
 
@@ -222,7 +223,7 @@ CREATE TABLE `opening` (
 --
 
 INSERT INTO `opening` (`id`, `content`, `photo`) VALUES
-(1, 'TEFA RPL SMK 1 TRIPLE “J” ini bertujuan untuk meningkatkan kompetensi siswa/siswi \r\nsecara langsung melalui perusahaan atau industri yang  terkait.\r\ndidalam tefa juga siswa/siswi tidak hanya memperaktikan Soft Skill dalam pembelajaran,\r\nada juga belajar untuk dapat bekerja secara tim, melatih kemampuan komunikasi secara interpersonal, siswa/siswi juga mendapatkan pengalaman secara langsung dan latihan bekerja untuk memasuki dunia kerja nantinya, dan dapat menjembatani kesenjangan kompetensi antara kebutuhan industri dan pengetahuan sekolah untuk menyadarkan bahwa mengajar siswa/siswi seharusnya lebih dari sekedar apa yang terdapat dalam buku.', '92d81dcc1fc0dceb8b582fc271d48a76.png');
+(1, 'TEFA RPL SMK 1 TRIPLE “J” ini bertujuan untuk meningkatkan kompetensi siswa/siswi \r\nsecara langsung melalui perusahaan atau industri yang  terkait.\r\ndidalam tefa juga siswa/siswi tidak hanya memperaktikan Soft Skill dalam pembelajaran,\r\nada juga belajar untuk dapat bekerja secara tim, melatih kemampuan komunikasi secara interpersonal, siswa/siswi juga mendapatkan pengalaman secara langsung dan latihan bekerja untuk memasuki dunia kerja nantinya, dan dapat menjembatani kesenjangan kompetensi antara kebutuhan industri dan pengetahuan sekolah untuk menyadarkan bahwa mengajar siswa/siswi seharusnya lebih dari sekedar apa yang terdapat dalam buku.', 'd7ed78a7080287a51525bc109329589d.jpg');
 
 -- --------------------------------------------------------
 
@@ -295,7 +296,7 @@ CREATE TABLE `structure` (
 --
 
 INSERT INTO `structure` (`id`, `photo`) VALUES
-(1, 'eaaa2adf57606ced8caa039d895331b1.png');
+(1, 'e7bdf5f25ee57a0c2de4d59723298ff3.png');
 
 -- --------------------------------------------------------
 
@@ -357,7 +358,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1683941858, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1684547113, 1, 'Admin', 'istrator', 'ADMIN', '0'),
 (3, '::1', 'tasyarojabilasamroi@mail.com', '$2y$10$ufb5qHckmFIQO0j06ACLhOVx/Bf8Z5C9xowPtUOZcIsEP.GOb.CMa', 'tasyarojabilasamroi@mail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1683943097, NULL, 1, 'gadun', 'rojak', NULL, '081511385307');
 
 -- --------------------------------------------------------
@@ -533,7 +534,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `hubins`
 --
 ALTER TABLE `hubins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `identity`

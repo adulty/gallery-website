@@ -44,6 +44,7 @@
 					<th>#</th>
 					<th>Nama Hubin</th>
 					<th>Foto</th>
+               <th>Website</th>
 					<th>Aksi</th>
 				</tr>
          </thead>

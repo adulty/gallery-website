@@ -6,8 +6,8 @@ class Hubin extends CI_Controller {
 	var $table = 'hubins';
 	var $id = 'id';
 	var $select = ['*'];
-	var $column_order = ['', 'name', 'photo'];
-	var $column_search = ['name', 'photo'];
+	var $column_order = ['', 'name', 'photo', 'website'];
+	var $column_search = ['name', 'photo', 'website'];
 	
 	public function __construct()
 	{
@@ -42,7 +42,7 @@ class Hubin extends CI_Controller {
          }else{
             $row[] = '(No photo)';
 			}
-
+			$row[] = $li->website;
          $row[] = 
          '<a class="btn btn-sm btn-warning text-white" href="'.base_url("index.php/hubin/edit/$li->id").'" 
          title="Edit">
@@ -77,6 +77,11 @@ class Hubin extends CI_Controller {
 			]
 		);
 
+		$this->form_validation->set_rules('website', 'Website','required',[
+			'required' => 'Nama Website tidak boleh kosong!'
+			]
+		);
+
 		if($this->form_validation->run() == false){
 			$data['title'] 		= 'Tambah Hubin';
 			$data['page']			= 'hubin/form';
@@ -89,9 +94,10 @@ class Hubin extends CI_Controller {
 				'name' => $this->input->post('name', true),
 			];
 
-			if(!empty($_FILES['photo']['name'])){
+			if(!empty($_FILES['photo']['name']['website'])){
 				$imageName = url_title($data['name'], '-', true) . '-' . date('YmdHis');
-				$upload = $this->hubin->uploadImage($imageName);
+				$websiteName = url_title($data['website'], '-', true) . '-' . date('YmdHis');
+				$upload = $this->hubin->uploadImage($imageName,$websiteName);
 				$data['photo'] = $upload;
 			}
 			
@@ -114,6 +120,10 @@ class Hubin extends CI_Controller {
 			'required' => 'Nama Hubungan Industri tidak boleh kosong!'
 			]
 		);
+		$this->form_validation->set_rules('website', 'Website','required',[
+			'required' => 'Nama Website tidak boleh kosong!'
+			]
+		);
 
 		if($this->form_validation->run() == false){
 			$data['title']			= 'Ubah Hubin';
@@ -125,11 +135,13 @@ class Hubin extends CI_Controller {
 		}else{
 			$data = [
 				'name' => $this->input->post('name', true),
+				'website' => $this->input->post('website', true),
 			];
 
-			if(!empty($_FILES['photo']['name'])){
+			if(!empty($_FILES['photo']['name']['website'])){
 				$imageName = url_title($data['name'], '-', true) . '-' . date('YmdHis');
-				$upload = $this->hubin->uploadImage($imageName);
+				$websiteName = url_title($data['website'], '-', true) . '-' . date('YmdHis');
+				$upload = $this->hubin->uploadImage($imageName,$websiteName);
 
 				if($upload){
 					$hubin = $this->hubin->getDataById($id);

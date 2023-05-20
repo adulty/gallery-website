@@ -35,6 +35,7 @@ class Hubin_model extends CI_Model {
       return [
          'name'        	=> '',
          'photo'        => '',
+		 'website'		=> '',
       ];
 	}
 
