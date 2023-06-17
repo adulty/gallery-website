@@ -41,7 +41,7 @@
 </div>
 <!-- End of Sambutan -->
 
-<!-- Jurusan -->
+<!-- Produk -->
 <div class="jumbotron jumbotron-fluid bg-cover jurusan mt-5" style="background-image: url(<?= base_url('img/background/' . $jurusan->photo) ?>)">
 	<div class="container text-center">
 		<div class="row">

@@ -3,12 +3,6 @@ Website TEFA RPL yang dibuat dengan CodeIgniter sebagai penyelesai tugas untuk K
 
 To access admin page, add url /admin. Example http://localhost/tefa-website/admin
 
-## Tampilan Aplikasi
-![ss](asset/ss1.png)
-![ss](asset/ss2.png)
-![ss](asset/ss3.png)
-![ss](asset/ss4.png)
-
 ## Admin Account
 |    Username    | Password |
 |:--------------:|---------:|
