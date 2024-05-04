@@ -132,23 +132,7 @@
 				['height', ['height']],
 				['insert', ['table', 'link', 'hr', 'fullscreen']],
 			],
-			placeholder: 'Masukkan konten berita disini...'
-      });
-      
-       $('#summernote').summernote({
-         height: 300,
-			toolbar: [
-				// [groupName, [list of button]]
-				['style', ['bold', 'italic', 'underline', 'clear', 'fontname']],
-				['misc', ['undo', 'redo']],
-				['font', ['strikethrough', 'superscript', 'subscript']],
-				['fontsize', ['fontsize']],
-				['color', ['color']],
-				['para', ['ul', 'ol', 'paragraph']],
-				['height', ['height']],
-				['insert', ['table', 'link', 'hr', 'fullscreen']],
-			],
-			placeholder: 'Masukkan konten portfolio disini...'
+			placeholder: 'Masukkan konten informasi terkini disini...'
       });
    </script>
 

@@ -4,8 +4,8 @@
 }
 
 body {
-  background: #db8726 !important;
-  background: linear-gradient(to right, #663e07, #cc9322) !important;
+  background: #596164 !important;
+  background: linear-gradient(to right, #868F96, #596164) !important;
 }
 
 .card-signin {
@@ -112,6 +112,7 @@ body {
   .form-label-group>label {
     display: none;
   }
+
   .form-label-group input::-ms-input-placeholder {
     color: #777;
   }
@@ -125,6 +126,7 @@ body {
   .form-label-group>label {
     display: none;
   }
+
   .form-label-group input:-ms-input-placeholder {
     color: #777;
   }

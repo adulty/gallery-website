@@ -38,18 +38,18 @@ $config['database_group_name'] = '';
 | -------------------------------------------------------------------------
 | Database table names.
 */
-$config['tables']['users']           = 'users';
+$config['tables']['petugas']           = 'petugas';
 $config['tables']['groups']          = 'groups';
-$config['tables']['users_groups']    = 'users_groups';
+$config['tables']['petugas_groups']    = 'petugas_groups';
 $config['tables']['login_attempts']  = 'login_attempts';
 
 /*
- | Users table column and Group table column you want to join WITH.
+ | petugas table column and Group table column you want to join WITH.
  |
- | Joins from users.id
+ | Joins from petugas.id
  | Joins from groups.id
  */
-$config['join']['users']  = 'user_id';
+$config['join']['petugas']  = 'petugas_id';
 $config['join']['groups'] = 'group_id';
 
 /*
@@ -141,9 +141,9 @@ $config['identity']                   = 'email';             /* You can use any 
 $config['min_password_length']        = 8;                   // Minimum Required Length of Password (not enforced by lib - see note above)
 $config['email_activation']           = FALSE;               // Email Activation for registration
 $config['manual_activation']          = FALSE;               // Manual Activation for registration
-$config['remember_users']             = TRUE;                // Allow users to be remembered and enable auto-login
+$config['remember_petugas']             = TRUE;                // Allow petugas to be remembered and enable auto-login
 $config['user_expire']                = 86500;               // How long to remember the user (seconds). Set to zero for no expiration - see sess_expiration in CodeIgniter Session Config for session expiration
-$config['user_extend_on_login']       = FALSE;               // Extend the users cookies every time they auto-login
+$config['user_extend_on_login']       = FALSE;               // Extend the petugas cookies every time they auto-login
 $config['track_login_attempts']       = TRUE;                // Track the number of failed login attempts for each user or ip.
 $config['track_login_ip_address']     = TRUE;                // Track login attempts by IP Address, if FALSE will track based on identity. (Default: TRUE)
 $config['maximum_login_attempts']     = 3;                   // The maximum number of failed login attempts.

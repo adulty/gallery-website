@@ -25,6 +25,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Class Ion Auth Model
  * @property Ion_auth $ion_auth The Ion_auth library
  */
+
+ #[\AllowDynamicProperties]
+
 class Ion_auth_model extends CI_Model
 {
 	/**
@@ -177,7 +180,7 @@ class Ion_auth_model extends CI_Model
 	protected $error_end_delimiter;
 
 	/**
-	 * caching of users and their groups
+	 * caching of petugas and their groups
 	 *
 	 * @var array
 	 */
@@ -309,7 +312,7 @@ class Ion_auth_model extends CI_Model
 
 	/**
 	 * This function takes a password and validates it
-	 * against an entry in the users table.
+	 * against an entry in the petugas table.
 	 *
 	 * @param string	$password
 	 * @param string	$hash_password_db
@@ -389,7 +392,7 @@ class Ion_auth_model extends CI_Model
 		if ($token) 
 		{
 			// Retrieve the user according to this selector
-			$user = $this->where('activation_selector', $token->selector)->users()->row();
+			$user = $this->where('activation_selector', $token->selector)->petugas()->row();
 
 			if ($user)
 			{
@@ -433,7 +436,7 @@ class Ion_auth_model extends CI_Model
 			];
 
 			$this->trigger_events('extra_where');
-			$this->db->update($this->tables['users'], $data, ['id' => $id]);
+			$this->db->update($this->tables['petugas'], $data, ['id' => $id]);
 
 			if ($this->db->affected_rows() === 1)
 			{
@@ -450,7 +453,7 @@ class Ion_auth_model extends CI_Model
 
 
 	/**
-	 * Updates a users row with an activation code.
+	 * Updates a petugas row with an activation code.
 	 *
 	 * @param int|string|null $id
 	 *
@@ -469,7 +472,7 @@ class Ion_auth_model extends CI_Model
 		];
 
 		$this->trigger_events('extra_where');
-		$this->db->update($this->tables['users'], $data, ['id' => $id]);
+		$this->db->update($this->tables['petugas'], $data, ['id' => $id]);
 
 		$return = $this->db->affected_rows() == 1;
 		if ($return)
@@ -504,7 +507,7 @@ class Ion_auth_model extends CI_Model
 			'forgotten_password_time' => NULL
 		];
 
-		$this->db->update($this->tables['users'], $data, [$this->identity_column => $identity]);
+		$this->db->update($this->tables['petugas'], $data, [$this->identity_column => $identity]);
 
 		return TRUE;
 	}
@@ -528,7 +531,7 @@ class Ion_auth_model extends CI_Model
 			'remember_code' => NULL
 		];
 
-		$this->db->update($this->tables['users'], $data, [$this->identity_column => $identity]);
+		$this->db->update($this->tables['petugas'], $data, [$this->identity_column => $identity]);
 
 		return TRUE;
 	}
@@ -586,7 +589,7 @@ class Ion_auth_model extends CI_Model
 		                  ->where($this->identity_column, $identity)
 		                  ->limit(1)
 		                  ->order_by('id', 'desc')
-		                  ->get($this->tables['users']);
+		                  ->get($this->tables['petugas']);
 
 		if ($query->num_rows() !== 1)
 		{
@@ -640,7 +643,7 @@ class Ion_auth_model extends CI_Model
 
 		return $this->db->where('username', $username)
 						->limit(1)
-						->count_all_results($this->tables['users']) > 0;
+						->count_all_results($this->tables['petugas']) > 0;
 	}
 
 	/**
@@ -664,7 +667,7 @@ class Ion_auth_model extends CI_Model
 
 		return $this->db->where('email', $email)
 						->limit(1)
-						->count_all_results($this->tables['users']) > 0;
+						->count_all_results($this->tables['petugas']) > 0;
 	}
 
 	/**
@@ -686,7 +689,7 @@ class Ion_auth_model extends CI_Model
 
 		return $this->db->where($this->identity_column, $identity)
 						->limit(1)
-						->count_all_results($this->tables['users']) > 0;
+						->count_all_results($this->tables['petugas']) > 0;
 	}
 
 	/**
@@ -696,7 +699,7 @@ class Ion_auth_model extends CI_Model
 	 *
 	 * @return bool|int
 	 */
-	public function get_user_id_from_identity($identity = '')
+	public function get_petugas_id_from_identity($identity = '')
 	{
 		if (empty($identity))
 		{
@@ -706,7 +709,7 @@ class Ion_auth_model extends CI_Model
 		$query = $this->db->select('id')
 						  ->where($this->identity_column, $identity)
 						  ->limit(1)
-						  ->get($this->tables['users']);
+						  ->get($this->tables['petugas']);
 
 		if ($query->num_rows() !== 1)
 		{
@@ -745,7 +748,7 @@ class Ion_auth_model extends CI_Model
 		];
 
 		$this->trigger_events('extra_where');
-		$this->db->update($this->tables['users'], $update, [$this->identity_column => $identity]);
+		$this->db->update($this->tables['petugas'], $update, [$this->identity_column => $identity]);
 
 		if ($this->db->affected_rows() === 1)
 		{
@@ -775,7 +778,7 @@ class Ion_auth_model extends CI_Model
 
 		if($token) {
 			// Retrieve the user according to this selector
-			$user = $this->where('forgotten_password_selector', $token->selector)->users()->row();
+			$user = $this->where('forgotten_password_selector', $token->selector)->petugas()->row();
 
 			if ($user)
 			{
@@ -842,7 +845,7 @@ class Ion_auth_model extends CI_Model
 			return FALSE;
 		}
 
-		// Users table.
+		// petugas table.
 		$data = [
 			$this->identity_column => $identity,
 			'username' => $identity,
@@ -853,15 +856,15 @@ class Ion_auth_model extends CI_Model
 			'active' => ($manual_activation === FALSE ? 1 : 0)
 		];
 
-		// filter out any data passed that doesnt have a matching column in the users table
+		// filter out any data passed that doesnt have a matching column in the petugas table
 		// and merge the set user data and the additional data
-		$user_data = array_merge($this->_filter_data($this->tables['users'], $additional_data), $data);
+		$user_data = array_merge($this->_filter_data($this->tables['petugas'], $additional_data), $data);
 
 		$this->trigger_events('extra_set');
 
-		$this->db->insert($this->tables['users'], $user_data);
+		$this->db->insert($this->tables['petugas'], $user_data);
 
-		$id = $this->db->insert_id($this->tables['users'] . '_id_seq');
+		$id = $this->db->insert_id($this->tables['petugas'] . '_id_seq');
 
 		// add in groups array if it doesn't exists and stop adding into default group if default group ids are set
 		if (isset($default_group->id) && empty($groups))
@@ -909,7 +912,7 @@ class Ion_auth_model extends CI_Model
 						  ->where($this->identity_column, $identity)
 						  ->limit(1)
 						  ->order_by('id', 'desc')
-						  ->get($this->tables['users']);
+						  ->get($this->tables['petugas']);
 
 		if ($this->is_max_login_attempts_exceeded($identity))
 		{
@@ -943,7 +946,7 @@ class Ion_auth_model extends CI_Model
 				$this->clear_login_attempts($identity);
 				$this->clear_forgotten_password_code($identity);
 
-				if ($this->config->item('remember_users', 'ion_auth'))
+				if ($this->config->item('remember_petugas', 'ion_auth'))
 				{
 					if ($remember)
 					{
@@ -1005,7 +1008,7 @@ class Ion_auth_model extends CI_Model
 								  ])
 								  ->limit(1)
 								  ->order_by('id', 'desc')
-								  ->get($this->tables['users']);
+								  ->get($this->tables['petugas']);
 				if ($query->num_rows() === 1)
 				{
 					$this->session->set_userdata('last_check', time());
@@ -1016,7 +1019,7 @@ class Ion_auth_model extends CI_Model
 
 					$identity = $this->config->item('identity', 'ion_auth');
 
-					$this->session->unset_userdata([$identity, 'id', 'user_id']);
+					$this->session->unset_userdata([$identity, 'id', 'petugas_id']);
 
 					return FALSE;
 				}
@@ -1366,16 +1369,16 @@ class Ion_auth_model extends CI_Model
 	}
 
 	/**
-	 * users
+	 * petugas
 	 *
 	 * @param array|null $groups
 	 *
 	 * @return static
 	 * @author Ben Edmunds
 	 */
-	public function users($groups = NULL)
+	public function petugas($groups = NULL)
 	{
-		$this->trigger_events('users');
+		$this->trigger_events('petugas');
 
 		if (isset($this->_ion_select) && !empty($this->_ion_select))
 		{
@@ -1390,9 +1393,9 @@ class Ion_auth_model extends CI_Model
 		{
 			// default selects
 			$this->db->select([
-			    $this->tables['users'].'.*',
-			    $this->tables['users'].'.id as id',
-			    $this->tables['users'].'.id as user_id'
+			    $this->tables['petugas'].'.*',
+			    $this->tables['petugas'].'.id as id',
+			    $this->tables['petugas'].'.id as petugas_id'
 			]);
 		}
 
@@ -1410,8 +1413,8 @@ class Ion_auth_model extends CI_Model
 			{
 				$this->db->distinct();
 				$this->db->join(
-				    $this->tables['users_groups'],
-				    $this->tables['users_groups'].'.'.$this->join['users'].'='.$this->tables['users'].'.id',
+				    $this->tables['petugas_groups'],
+				    $this->tables['petugas_groups'].'.'.$this->join['petugas'].'='.$this->tables['petugas'].'.id',
 				    'inner'
 				);
 			}
@@ -1428,12 +1431,12 @@ class Ion_auth_model extends CI_Model
 			// if group name was used we do one more join with groups
 			if(!empty($group_names))
 			{
-				$this->db->join($this->tables['groups'], $this->tables['users_groups'] . '.' . $this->join['groups'] . ' = ' . $this->tables['groups'] . '.id', 'inner');
+				$this->db->join($this->tables['groups'], $this->tables['petugas_groups'] . '.' . $this->join['groups'] . ' = ' . $this->tables['groups'] . '.id', 'inner');
 				$this->db->where_in($this->tables['groups'] . '.name', $group_names);
 			}
 			if(!empty($group_ids))
 			{
-				$this->db->{$or_where_in}($this->tables['users_groups'].'.'.$this->join['groups'], $group_ids);
+				$this->db->{$or_where_in}($this->tables['petugas_groups'].'.'.$this->join['groups'], $group_ids);
 			}
 		}
 
@@ -1483,7 +1486,7 @@ class Ion_auth_model extends CI_Model
 			$this->_ion_order_by = NULL;
 		}
 
-		$this->response = $this->db->get($this->tables['users']);
+		$this->response = $this->db->get($this->tables['petugas']);
 
 		return $this;
 	}
@@ -1500,37 +1503,37 @@ class Ion_auth_model extends CI_Model
 	{
 		$this->trigger_events('user');
 
-		// if no id was passed use the current users id
-		$id = isset($id) ? $id : $this->session->userdata('user_id');
+		// if no id was passed use the current petugas id
+		$id = isset($id) ? $id : $this->session->userdata('petugas_id');
 
 		$this->limit(1);
-		$this->order_by($this->tables['users'].'.id', 'desc');
-		$this->where($this->tables['users'].'.id', $id);
+		$this->order_by($this->tables['petugas'].'.id', 'desc');
+		$this->where($this->tables['petugas'].'.id', $id);
 
-		$this->users();
+		$this->petugas();
 
 		return $this;
 	}
 
 	/**
-	 * get_users_groups
+	 * get_petugas_groups
 	 *
 	 * @param int|string|bool $id
 	 *
 	 * @return CI_DB_result
 	 * @author Ben Edmunds
 	 */
-	public function get_users_groups($id = FALSE)
+	public function get_petugas_groups($id = FALSE)
 	{
-		$this->trigger_events('get_users_group');
+		$this->trigger_events('get_petugas_group');
 
-		// if no id was passed use the current users id
-		$id || $id = $this->session->userdata('user_id');
+		// if no id was passed use the current petugas id
+		$id || $id = $this->session->userdata('petugas_id');
 
-		return $this->db->select($this->tables['users_groups'].'.'.$this->join['groups'].' as id, '.$this->tables['groups'].'.name, '.$this->tables['groups'].'.description')
-		                ->where($this->tables['users_groups'].'.'.$this->join['users'], $id)
-		                ->join($this->tables['groups'], $this->tables['users_groups'].'.'.$this->join['groups'].'='.$this->tables['groups'].'.id')
-		                ->get($this->tables['users_groups']);
+		return $this->db->select($this->tables['petugas_groups'].'.'.$this->join['groups'].' as id, '.$this->tables['groups'].'.name, '.$this->tables['groups'].'.description')
+		                ->where($this->tables['petugas_groups'].'.'.$this->join['petugas'], $id)
+		                ->join($this->tables['groups'], $this->tables['petugas_groups'].'.'.$this->join['groups'].'='.$this->tables['groups'].'.id')
+		                ->get($this->tables['petugas_groups']);
 	}
 
 	/**
@@ -1545,7 +1548,7 @@ class Ion_auth_model extends CI_Model
 	{
 		$this->trigger_events('in_group');
 
-		$id || $id = $this->session->userdata('user_id');
+		$id || $id = $this->session->userdata('petugas_id');
 
 		if (!is_array($check_group))
 		{
@@ -1558,9 +1561,9 @@ class Ion_auth_model extends CI_Model
 		}
 		else
 		{
-			$users_groups = $this->get_users_groups($id)->result();
+			$petugas_groups = $this->get_petugas_groups($id)->result();
 			$groups_array = [];
-			foreach ($users_groups as $group)
+			foreach ($petugas_groups as $group)
 			{
 				$groups_array[$group->id] = $group->name;
 			}
@@ -1595,17 +1598,17 @@ class Ion_auth_model extends CI_Model
 	 * add_to_group
 	 *
 	 * @param array|int|float|string $group_ids
-	 * @param bool|int|float|string  $user_id
+	 * @param bool|int|float|string  $petugas_id
 	 *
 	 * @return int
 	 * @author Ben Edmunds
 	 */
-	public function add_to_group($group_ids, $user_id = FALSE)
+	public function add_to_group($group_ids, $petugas_id = FALSE)
 	{
 		$this->trigger_events('add_to_group');
 
-		// if no id was passed use the current users id
-		$user_id || $user_id = $this->session->userdata('user_id');
+		// if no id was passed use the current petugas id
+		$petugas_id || $petugas_id = $this->session->userdata('petugas_id');
 
 		if(!is_array($group_ids))
 		{
@@ -1618,9 +1621,9 @@ class Ion_auth_model extends CI_Model
 		foreach ($group_ids as $group_id)
 		{
 			// Cast to float to support bigint data type
-			if ($this->db->insert($this->tables['users_groups'],
+			if ($this->db->insert($this->tables['petugas_groups'],
 								  [ $this->join['groups'] => (float)$group_id,
-									$this->join['users']  => (float)$user_id  ]))
+									$this->join['petugas']  => (float)$petugas_id  ]))
 			{
 				if (isset($this->_cache_groups[$group_id]))
 				{
@@ -1632,7 +1635,7 @@ class Ion_auth_model extends CI_Model
 					$group_name = $group[0]->name;
 					$this->_cache_groups[$group_id] = $group_name;
 				}
-				$this->_cache_user_in_group[$user_id][$group_id] = $group_name;
+				$this->_cache_user_in_group[$petugas_id][$group_id] = $group_name;
 
 				// Return the number of groups added
 				$return++;
@@ -1646,17 +1649,17 @@ class Ion_auth_model extends CI_Model
 	 * remove_from_group
 	 *
 	 * @param array|int|float|string|bool $group_ids
-	 * @param int|float|string|bool $user_id
+	 * @param int|float|string|bool $petugas_id
 	 *
 	 * @return bool
 	 * @author Ben Edmunds
 	 */
-	public function remove_from_group($group_ids = FALSE, $user_id = FALSE)
+	public function remove_from_group($group_ids = FALSE, $petugas_id = FALSE)
 	{
 		$this->trigger_events('remove_from_group');
 
 		// user id is required
-		if (empty($user_id))
+		if (empty($petugas_id))
 		{
 			return FALSE;
 		}
@@ -1673,12 +1676,12 @@ class Ion_auth_model extends CI_Model
 			{
 				// Cast to float to support bigint data type
 				$this->db->delete(
-					$this->tables['users_groups'],
-					[$this->join['groups'] => (float)$group_id, $this->join['users'] => (float)$user_id]
+					$this->tables['petugas_groups'],
+					[$this->join['groups'] => (float)$group_id, $this->join['petugas'] => (float)$petugas_id]
 				);
-				if (isset($this->_cache_user_in_group[$user_id]) && isset($this->_cache_user_in_group[$user_id][$group_id]))
+				if (isset($this->_cache_user_in_group[$petugas_id]) && isset($this->_cache_user_in_group[$petugas_id][$group_id]))
 				{
-					unset($this->_cache_user_in_group[$user_id][$group_id]);
+					unset($this->_cache_user_in_group[$petugas_id][$group_id]);
 				}
 			}
 
@@ -1688,9 +1691,9 @@ class Ion_auth_model extends CI_Model
 		else
 		{
 			// Cast to float to support bigint data type
-			if ($return = $this->db->delete($this->tables['users_groups'], [$this->join['users'] => (float)$user_id]))
+			if ($return = $this->db->delete($this->tables['petugas_groups'], [$this->join['petugas'] => (float)$petugas_id]))
 			{
-				$this->_cache_user_in_group[$user_id] = [];
+				$this->_cache_user_in_group[$petugas_id] = [];
 			}
 		}
 		return $return;
@@ -1793,7 +1796,7 @@ class Ion_auth_model extends CI_Model
 		}
 
 		// Filter the data passed
-		$data = $this->_filter_data($this->tables['users'], $data);
+		$data = $this->_filter_data($this->tables['petugas'], $data);
 
 		if (array_key_exists($this->identity_column, $data) || array_key_exists('password', $data) || array_key_exists('email', $data))
 		{
@@ -1820,7 +1823,7 @@ class Ion_auth_model extends CI_Model
 		}
 
 		$this->trigger_events('extra_where');
-		$this->db->update($this->tables['users'], $data, ['id' => $user->id]);
+		$this->db->update($this->tables['petugas'], $data, ['id' => $user->id]);
 
 		if ($this->db->trans_status() === FALSE)
 		{
@@ -1855,8 +1858,8 @@ class Ion_auth_model extends CI_Model
 		// remove user from groups
 		$this->remove_from_group(NULL, $id);
 
-		// delete user from users table should be placed after remove from group
-		$this->db->delete($this->tables['users'], ['id' => $id]);
+		// delete user from petugas table should be placed after remove from group
+		$this->db->delete($this->tables['petugas'], ['id' => $id]);
 
 		if ($this->db->trans_status() === FALSE)
 		{
@@ -1889,7 +1892,7 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('extra_where');
 
-		$this->db->update($this->tables['users'], ['last_login' => time()], ['id' => $id]);
+		$this->db->update($this->tables['petugas'], ['last_login' => time()], ['id' => $id]);
 
 		return $this->db->affected_rows() == 1;
 	}
@@ -1942,7 +1945,7 @@ class Ion_auth_model extends CI_Model
 		    'identity'             => $user->{$this->identity_column},
 		    $this->identity_column => $user->{$this->identity_column},
 		    'email'                => $user->email,
-		    'user_id'              => $user->id, //everyone likes to overwrite id so we'll use user_id
+		    'petugas_id'              => $user->id, //everyone likes to overwrite id so we'll use petugas_id
 		    'old_last_login'       => $user->last_login,
 		    'last_check'           => time(),
 		];
@@ -1979,7 +1982,7 @@ class Ion_auth_model extends CI_Model
 
 		if ($token->validator_hashed)
 		{
-			$this->db->update($this->tables['users'],
+			$this->db->update($this->tables['petugas'],
 								[ 'remember_selector' => $token->selector,
 								  'remember_code' => $token->validator_hashed ],
 								[ $this->identity_column => $identity ]);
@@ -2040,7 +2043,7 @@ class Ion_auth_model extends CI_Model
 						  ->where('remember_selector', $token->selector)
 						  ->where('active', 1)
 						  ->limit(1)
-						  ->get($this->tables['users']);
+						  ->get($this->tables['petugas']);
 
 		// Check that we got the user
 		if ($query->num_rows() === 1)
@@ -2058,7 +2061,7 @@ class Ion_auth_model extends CI_Model
 
 				$this->clear_forgotten_password_code($identity);
 
-				// extend the users cookies if the option is enabled
+				// extend the petugas cookies if the option is enabled
 				if ($this->config->item('user_extend_on_login', 'ion_auth'))
 				{
 					$this->remember_user($identity);
@@ -2206,8 +2209,8 @@ class Ion_auth_model extends CI_Model
 
 		$this->db->trans_begin();
 
-		// remove all users from this group
-		$this->db->delete($this->tables['users_groups'], [$this->join['groups'] => $group_id]);
+		// remove all petugas from this group
+		$this->db->delete($this->tables['petugas_groups'], [$this->join['groups'] => $group_id]);
 		// remove the group itself
 		$this->db->delete($this->tables['groups'], ['id' => $group_id]);
 
@@ -2531,7 +2534,7 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('extra_where');
 
-		$this->db->update($this->tables['users'], $data, [$this->identity_column => $identity]);
+		$this->db->update($this->tables['petugas'], $data, [$this->identity_column => $identity]);
 
 		return $this->db->affected_rows() == 1;
 	}
@@ -2603,8 +2606,8 @@ class Ion_auth_model extends CI_Model
 		$is_admin = FALSE;
 		if ($identity)
 		{
-			$user_id = $this->get_user_id_from_identity($identity);
-			if ($user_id && $this->in_group($this->config->item('admin_group', 'ion_auth'), $user_id))
+			$petugas_id = $this->get_petugas_id_from_identity($identity);
+			if ($petugas_id && $this->in_group($this->config->item('admin_group', 'ion_auth'), $petugas_id))
 			{
 				$is_admin = TRUE;
 			}
@@ -2743,7 +2746,7 @@ class Ion_auth_model extends CI_Model
 			$query = $this->db->select('salt')
 							  ->where($this->identity_column, $identity)
 							  ->limit(1)
-							  ->get($this->tables['users']);
+							  ->get($this->tables['petugas']);
 
 			$salt_db = $query->row();
 

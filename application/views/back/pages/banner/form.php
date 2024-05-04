@@ -35,7 +35,7 @@
 				<br> 
 				<small><span class="text-danger">*</span>	Maksimal ukuran gambar adalah 3 MB</small>
 				<br> <br>
-				<input name="photo" type="file" class="form-control-file">
+				<input name="photo" type="file" class="form-control-file" multiple>
 				<?php if($this->session->flashdata('image_error')) :  ?>
                 <small class="form-text text-danger">
                   <?= $this->session->flashdata('image_error') ?>

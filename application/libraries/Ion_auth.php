@@ -142,7 +142,7 @@ class Ion_auth
 		// Retrieve user information
 		$user = $this->where($this->ion_auth_model->identity_column, $identity)
 					 ->where('active', 1)
-					 ->users()->row();
+					 ->petugas()->row();
 
 		if ($user)
 		{
@@ -331,7 +331,7 @@ class Ion_auth
 
 		$identity = $this->config->item('identity', 'ion_auth');
 
-		$this->session->unset_userdata([$identity, 'id', 'user_id']);
+		$this->session->unset_userdata([$identity, 'id', 'petugas_id']);
 
 		// delete the remember me cookies if they exist
 		delete_cookie($this->config->item('remember_cookie_name', 'ion_auth'));
@@ -373,10 +373,10 @@ class Ion_auth
 	 **/
 	public function get_user_id()
 	{
-		$user_id = $this->session->userdata('user_id');
-		if (!empty($user_id))
+		$petugas_id = $this->session->userdata('petugas_id');
+		if (!empty($petugas_id))
 		{
-			return $user_id;
+			return $petugas_id;
 		}
 		return NULL;
 	}

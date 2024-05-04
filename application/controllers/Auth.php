@@ -46,15 +46,15 @@ class Auth extends CI_Controller
 			// set the flash data error message if there is one
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
-			//list the users
-			$this->data['users'] = $this->ion_auth->users()->result();
+			//list the petugas
+			$this->data['petugas'] = $this->ion_auth->petugas()->result();
 			
 			//USAGE NOTE - you can do more complicated queries like this
-			//$this->data['users'] = $this->ion_auth->where('field', 'value')->users()->result();
+			//$this->data['petugas'] = $this->ion_auth->where('field', 'value')->petugas()->result();
 			
-			foreach ($this->data['users'] as $k => $user)
+			foreach ($this->data['petugas'] as $k => $user)
 			{
-				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+				$this->data['petugas'][$k]->groups = $this->ion_auth->get_petugas_groups($user->id)->result();
 			}
 
 			$this->_render_page('admin' . DIRECTORY_SEPARATOR . 'index', $this->data);
@@ -172,9 +172,9 @@ class Auth extends CI_Controller
 				'type' => 'password',
 				'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
 			];
-			$this->data['user_id'] = [
-				'name' => 'user_id',
-				'id' => 'user_id',
+			$this->data['petugas_id'] = [
+				'name' => 'petugas_id',
+				'id' => 'petugas_id',
 				'type' => 'hidden',
 				'value' => $user->id,
 			];
@@ -245,7 +245,7 @@ class Auth extends CI_Controller
 		else
 		{
 			$identity_column = $this->config->item('identity', 'ion_auth');
-			$identity = $this->ion_auth->where($identity_column, $this->input->post('identity'))->users()->row();
+			$identity = $this->ion_auth->where($identity_column, $this->input->post('identity'))->petugas()->row();
 
 			if (empty($identity))
 			{
@@ -333,9 +333,9 @@ class Auth extends CI_Controller
 					'type' => 'password',
 					'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
 				];
-				$this->data['user_id'] = [
-					'name' => 'user_id',
-					'id' => 'user_id',
+				$this->data['petugas_id'] = [
+					'name' => 'petugas_id',
+					'id' => 'petugas_id',
 					'type' => 'hidden',
 					'value' => $user->id,
 				];
@@ -350,7 +350,7 @@ class Auth extends CI_Controller
 				$identity = $user->{$this->config->item('identity', 'ion_auth')};
 
 				// do we have a valid request?
-				if ($this->_valid_csrf_nonce() === FALSE || $user->id != $this->input->post('user_id'))
+				if ($this->_valid_csrf_nonce() === FALSE || $user->id != $this->input->post('petugas_id'))
 				{
 
 					// something fishy might be up
@@ -436,7 +436,7 @@ class Auth extends CI_Controller
 
 	// 	$this->load->library('form_validation');
 	// 	$this->form_validation->set_rules('confirm', $this->lang->line('deactivate_validation_confirm_label'), 'required');
-	// 	$this->form_validation->set_rules('id', $this->lang->line('deactivate_validation_user_id_label'), 'required|alpha_numeric');
+	// 	$this->form_validation->set_rules('id', $this->lang->line('deactivate_validation_petugas_id_label'), 'required|alpha_numeric');
 
 	// 	if ($this->form_validation->run() === FALSE)
 	// 	{
@@ -490,12 +490,12 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'trim|required');
 		if ($identity_column !== 'email')
 		{
-			$this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['users'] . '.' . $identity_column . ']');
+			$this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['petugas'] . '.' . $identity_column . ']');
 			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email');
 		}
 		else
 		{
-			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['users'] . '.email]');
+			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['petugas'] . '.email]');
 		}
 		$this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'trim');
 		$this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'trim');
@@ -606,7 +606,7 @@ class Auth extends CI_Controller
 
 		$user = $this->ion_auth->user($id)->row();
 		$groups = $this->ion_auth->groups()->result_array();
-		$currentGroups = $this->ion_auth->get_users_groups($id)->result();
+		$currentGroups = $this->ion_auth->get_petugas_groups($id)->result();
 			
 		//USAGE NOTE - you can do more complicated queries like this
 		//$groups = $this->ion_auth->where(['field' => 'value'])->groups()->result_array();

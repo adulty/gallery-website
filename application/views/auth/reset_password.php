@@ -34,7 +34,7 @@
 							<?= form_error('new_confirm', '<small class="form-text text-danger">', '</small>') ?>
 						</div>
 
-						<?php echo form_input($user_id);?>
+						<?php echo form_input($petugas_id);?>
 						<?php echo form_hidden($csrf); ?>
 
 						<button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"><?= lang('reset_password_submit_btn') ?></button>

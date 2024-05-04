@@ -8,10 +8,8 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('banner_model', 'banner');
 		$this->load->model('identitas_model', 'identitas');
-		$this->load->model('sambutan_model', 'sambutan');
-		$this->load->model('berita_model', 'berita');
-		$this->load->model('portfolio_model', 'portfolio');
-		$this->load->model('background_model', 'background');
+		$this->load->model('galery_model', 'galery');
+		$this->load->model('forkin_model', 'forkin');
 	}
 	
 	public function index()
@@ -19,10 +17,8 @@ class Home extends CI_Controller {
 		$data['title']		= 'Beranda';
 		$data['brand']		= $this->identitas->getData();
 		$data['banners'] 	= $this->banner->getBanner();
-		$data['sambutan'] = $this->sambutan->getData();
-		$data['berita']	= $this->berita->getLastNews();
-		$data['portfolio']	= $this->portfolio->getLastFolios();
-		$data['jurusan']	= $this->background->getData();
+		$data['galerysekolah'] = $this->galery->getData();
+		$data['forkin']	= $this->forkin->getLastNews();
 		$data['page']		= 'home/index';
 
 		$this->load->view('front/layouts/main', $data);

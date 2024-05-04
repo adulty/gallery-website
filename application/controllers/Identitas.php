@@ -1,7 +1,8 @@
-<?php 
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Identitas extends CI_Controller {
+class Identitas extends CI_Controller
+{
 
 	public function __construct()
 	{
@@ -22,33 +23,37 @@ class Identitas extends CI_Controller {
 
 	public function edit($id)
 	{
-		$this->form_validation->set_rules('meta_description', 'Deskripsi', 'required',
+		$this->form_validation->set_rules(
+			'meta_isi',
+			'Deskripsi',
+			'required',
 			['required' => 'Deskripsi tidak boleh kosong!']
 		);
-		$this->form_validation->set_rules('meta_keyword', 'Keyword', 'required',
-			['required' => 'Keyword tidak boleh kosong!']
+		$this->form_validation->set_rules(
+			'meta_judul',
+			'Keyword',
+			'required',
+			['required' => 'Judul tidak boleh kosong!']
 		);
 
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			$data['title']			= 'Ubah Identitas Website';
 			$data['page']			= 'identitas/form';
 			$data['content']		= $this->identitas->getData();
 			$data['form_action']	= base_url('index.php/identitas/edit/' . $id);
 			$this->load->view('back/layouts/main', $data);
-		}else{
+		} else {
 			$data = [
-				'meta_title'			=> '',
-				'meta_description'	=> $this->input->post('meta_description', true),
-				'meta_keyword'			=> $this->input->post('meta_keyword', true),
+				'meta_isi'	=> $this->input->post('meta_isi', true),
+				'meta_judul'			=> $this->input->post('meta_judul', true),
 			];
 
 			$this->identitas->updateData($id, $data);
-			$this->session->set_flashdata('success', 'Identitas Website Berhasil Diupdate.');
+			$this->session->set_flashdata('success', 'Profile Website Berhasil Diupdate.');
 
 			redirect(base_url('index.php/identitas'));
 		}
 	}
-
 }
 
 /* End of file Controllername.php */

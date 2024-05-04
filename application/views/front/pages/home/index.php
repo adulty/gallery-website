@@ -1,15 +1,14 @@
 <!-- Carousel -->
 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 	<div class="carousel-inner">
-		<?php $no = 0;?>
-		<?php foreach($banners as $banner) : ?>
+		<?php $no = 0; ?>
+		<?php foreach ($banners as $banner) : ?>
 			<?php $no++;  ?>
-			<div class="carousel-item <?php if($no <= 1) { echo "active"; } ?>">
+			<div class="carousel-item <?php if ($no <= 1) {
+											echo "active";
+										} ?>">
 				<img src="<?= base_url("img/banner/$banner->photo") ?>" class="d-block w-100">
-				<div class="carousel-caption d-none d-md-block">
-					<h1><?= $banner->title ?></h1>
-					<p><?= $banner->text ?></p>
-				</div>
+
 			</div>
 		<?php endforeach ?>
 	</div>
@@ -25,110 +24,55 @@
 <!-- End of Carousel -->
 
 <!-- Sambutan -->
-<div class="sambutan mt-5">
+<div class="sambutan mt-4">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-				<h2>Sambutan</h2>
-				<hr>
-				<p class="text-center"><?= $sambutan->content ?></p>
+			<div class="col-lg-6 col-md-4 col-sm-6 col-xs-7 text-center">
+				<img src="<?= base_url('img/galerysekolah/' . $galerysekolah->photo) ?>" class="img-fluid">
 			</div>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-5 text-center">
-				<img src="<?= base_url('img/sambutan/' . $sambutan->photo) ?>" class="img-thumbnail img-fluid">
+			<div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+				<h2>Gallery Kegiatan Sekolah</h2>
+				<hr>
+				<h5 class="card-title" style="text-align: center; font-size: 25px; font-weight:bold;"><?= $galerysekolah->judul ?></h5>
+				<p class="text-center"><?= $galerysekolah->content ?></p>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- End of Sambutan -->
 
-<!-- Produk -->
-<div class="jumbotron jumbotron-fluid bg-cover jurusan mt-5" style="background-image: url(<?= base_url('img/background/' . $jurusan->photo) ?>)">
-	<div class="container text-center">
-		<div class="row">
-			<div class="col">
-				<h2 class="">Produk</h2>
-			</div>
-		</div>
-		<hr>
-		<div class="row pt-3">
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-4">
-				<img class="" src="<?= base_url('img/jurusan/logo-pembuatan-website.png') ?>" alt="">
-				<h5 class="mt-2">Perancangan & Pembuatan Website</h5>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-4">
-				<img class="" src="<?= base_url('img/jurusan/logo-photo-booth.png') ?>" alt="">
-				<h5 class="mt-2">Photobooth</h5>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-4">
-				<img class="" src="<?= base_url('img/jurusan/logo-cctv.png') ?>" alt="">
-				<h5 class="mt-2">Jasa Instalasi CCTV & LAN</h5>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- End of Jurusan -->
-
-<!-- Portfolio -->
-<div class="last-news mt-5 mb-5">
-	<div class="container">
-		<div class="row d-flex justify-content-center">
-			<div class="col">
-				<h2 class="text-center">Portfolio Terbaru</h2>
-				<hr>
-			</div>
-		</div>
-		<div class="row mt-4">
-			<?php foreach($portfolio as $p) : ?>
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div class="card" style="width: 15rem; height: 24rem;">
-						<img style="height:150px" src="<?= base_url('img/portfolio/thumbs/' . $p->photo) ?>" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title"><?= $p->title ?></h5>
-							<p class="card-text"><?= character_limiter($p->content,50) ?></p>
-							<a href="<?= base_url("index.php/page/baca/$p->seo_title") ?>" class="btn btn-info btn-sm">Lanjut Membaca<i class="fa fa-angle-right ml-2"></i></a>
-						</div>
-					</div>
-				</div>
-			<?php endforeach ?>
-		</div>
-		<div class="row mt-4">
-			<div class="col text-center">
-				<a href="<?= base_url('index.php/page') ?>" class="btn btn-secondary text-light">Lihat Selengkapnya<i class="fa fa-angle-double-right ml-2"></i></a>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- End of Portfolio -->
 
 <!-- Berita -->
 <div class="last-news mt-5 mb-5">
 	<div class="container">
 		<div class="row d-flex justify-content-center">
 			<div class="col">
-				<h2 class="text-center">Berita Terbaru</h2>
-				<hr>
 			</div>
 		</div>
-		<div class="row mt-4">
-			<?php foreach($berita as $b) : ?>
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-					<div class="card" style="width: 15rem; height: 24rem;">
-						<img style="height:150px" src="<?= base_url('img/berita/thumbs/' . $b->photo) ?>" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title"><?= $b->title ?></h5>
-							<p class="card-text"><?= character_limiter($b->content,50) ?></p>
-							<a href="<?= base_url("index.php/blog/baca/$b->seo_title") ?>" class="btn btn-info btn-sm">Lanjut Membaca<i class="fa fa-angle-right ml-2"></i></a>
-						</div>
+		<div class="row mt-2">
+			<div class="col-lg-6 col-md-4 col-sm-6 col-xs-7 text-center">
+				<h2 class="text-center">Agenda Sekolah</h2>
+				<ul>
+					<li>Haloo</li>
+					<li>Tes</li>
+					<li>Hua</li>
+					<li>ASKDOASD</li>
+					<li>FSADs</li>
+					<li>HFSIFHS</li>
+				</ul>
+
+			</div>
+			<?php foreach ($forkin as $f) : ?>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<h2 class="text-center">Informasi Terkini</h2>
+					<h5 class="card-title" style="text-align: center;"><?= $f->title ?></h5>
+					<img style="height:250px width:250px" src="<?= base_url('img/informasiterkini/' . $f->photo) ?>" class="card-img-top">
+					<div class="card-body">
+						<p class="card-text"><?= character_limiter($f->content, 200) ?></p>
 					</div>
 				</div>
 			<?php endforeach ?>
 		</div>
-		<div class="row mt-4">
-			<div class="col text-center">
-				<a href="<?= base_url('index.php/blog') ?>" class="btn btn-secondary text-light">Lihat Selengkapnya<i class="fa fa-angle-double-right ml-2"></i></a>
-			</div>
-		</div>
 	</div>
 </div>
 <!-- End of Berita -->
-

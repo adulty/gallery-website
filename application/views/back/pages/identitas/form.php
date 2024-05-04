@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row mb-4">
 		<div class="col">
-			<h3>Form Update Identitas Website</h3>
+			<h3>Form Update Profile Website</h3>
 		</div>
 	</div>
 
@@ -9,18 +9,18 @@
 		<?= isset($content->id) ? form_hidden('id', $content->id) : '' ?>
 
 		<div class="form-group row">
-			<label for="meta_description" class="col-sm-2 col-form-label">Deskripsi</label>
+			<label for="meta_isi" class="col-sm-2 col-form-label">Isi</label>
 			<div class="col-sm-8">
-				<textarea name="meta_description" id="meta_description" rows="5" class="form-control" value="<?= $content->meta_description ?>"><?= $content->meta_description ?></textarea>
-				<?= form_error('meta_description', '<small class="form-text text-danger">', '</small>') ?>
+				<textarea name="meta_isi" id="meta_isi" rows="5" class="form-control" value="<?= $content->meta_isi ?>"><?= $content->meta_isi ?></textarea>
+				<?= form_error('meta_isi', '<small class="form-text text-danger">', '</small>') ?>
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="meta_keyword" class="col-sm-2 col-form-label">Keyword</label>
+			<label for="meta_judul" class="col-sm-2 col-form-label">Judul</label>
 			<div class="col-sm-8">
-				<textarea name="meta_keyword" id="meta_keyword" rows="5" class="form-control" value="<?= $content->meta_keyword ?>"><?= $content->meta_keyword ?></textarea>
-				<?= form_error('meta_keyword', '<small class="form-text text-danger">', '</small>') ?>
+				<textarea name="meta_judul" id="meta_judul" rows="5" class="form-control" value="<?= $content->meta_judul ?>"><?= $content->meta_judul ?></textarea>
+				<?= form_error('meta_judul', '<small class="form-text text-danger">', '</small>') ?>
 			</div>
 		</div>
 
