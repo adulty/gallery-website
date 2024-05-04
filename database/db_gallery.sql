@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Apr 2024 pada 10.18
+-- Waktu pembuatan: 04 Bulan Mei 2024 pada 03.07
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -46,20 +46,6 @@ INSERT INTO `banners` (`id`, `title`, `text`, `photo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `comments`
---
-
-CREATE TABLE `comments` (
-  `comment_id` int(11) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `comment` varchar(250) NOT NULL,
-  `status` enum('Active','Block') NOT NULL DEFAULT 'Active',
-  `created_at` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `groups`
 --
 
@@ -76,19 +62,6 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
 (2, 'members', 'General User');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `login_attempts`
---
-
-CREATE TABLE `login_attempts` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `login` varchar(100) NOT NULL,
-  `time` int(11) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -167,11 +140,11 @@ CREATE TABLE `petugas` (
 --
 
 INSERT INTO `petugas` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714030538, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714783439, 1, 'Admin', 'istrator', 'ADMIN', '0'),
 (3, '::1', 'tasyarojabilasamroi@mail.com', '$2y$10$ufb5qHckmFIQO0j06ACLhOVx/Bf8Z5C9xowPtUOZcIsEP.GOb.CMa', 'tasyarojabilasamroi@mail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1683943097, NULL, 1, 'gadun', 'rojak', NULL, '081511385307'),
-(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714030538, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714783439, 1, 'Admin', 'istrator', 'ADMIN', '0'),
 (3, '::1', 'tasyarojabilasamroi@mail.com', '$2y$10$ufb5qHckmFIQO0j06ACLhOVx/Bf8Z5C9xowPtUOZcIsEP.GOb.CMa', 'tasyarojabilasamroi@mail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1683943097, NULL, 1, 'gadun', 'rojak', NULL, '081511385307'),
-(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714030538, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714783439, 1, 'Admin', 'istrator', 'ADMIN', '0'),
 (3, '::1', 'tasyarojabilasamroi@mail.com', '$2y$10$ufb5qHckmFIQO0j06ACLhOVx/Bf8Z5C9xowPtUOZcIsEP.GOb.CMa', 'tasyarojabilasamroi@mail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1683943097, NULL, 1, 'gadun', 'rojak', NULL, '081511385307');
 
 -- --------------------------------------------------------
@@ -279,21 +252,9 @@ ALTER TABLE `banners`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`comment_id`);
-
---
 -- Indeks untuk tabel `groups`
 --
 ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `login_attempts`
---
-ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
