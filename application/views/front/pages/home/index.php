@@ -52,15 +52,17 @@
 		<div class="row mt-2">
 			<div class="col-lg-6 col-md-4 col-sm-6 col-xs-7 text-center">
 				<h2 class="text-center">Agenda Sekolah</h2>
-				<ul>
-					<li>Haloo</li>
-					<li>Tes</li>
-					<li>Hua</li>
-					<li>ASKDOASD</li>
-					<li>FSADs</li>
-					<li>HFSIFHS</li>
-				</ul>
-
+				<div class="container mt-5">
+					<ul>
+						<li>Melaksanakan uji kompetensi</li>
+						<li>Melaksanakan PKL bagi siswa-siswi</li>
+						<li>Study Tour Dieng-Yogyakarta</li>
+						<li>Ujian Semester Akhir bagi murid XII</li>
+						<li>Pelatihan Robotik oleh mahasiswa UNHAN RI</li>
+						<li>Melakukan Team Kelompok Bisnis PKK</li>
+						<li>Melaksanakan Tugas Tarian Daerah SBK</li>
+					</ul>
+				</div>
 			</div>
 			<?php foreach ($forkin as $f) : ?>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

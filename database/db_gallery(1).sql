@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Bulan Mei 2024 pada 03.07
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Waktu pembuatan: 06 Bulan Mei 2024 pada 09.55
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,7 +33,7 @@ CREATE TABLE `banners` (
   `title` varchar(255) NOT NULL,
   `text` varchar(255) NOT NULL,
   `photo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `banners`
@@ -53,7 +54,7 @@ CREATE TABLE `groups` (
   `id` mediumint(8) UNSIGNED NOT NULL,
   `name` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `groups`
@@ -62,6 +63,19 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
 (2, 'members', 'General User');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `login_attempts`
+--
+
+CREATE TABLE `login_attempts` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `time` int(11) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -76,7 +90,7 @@ CREATE TABLE `menus` (
   `url` varchar(100) NOT NULL,
   `icon` varchar(100) NOT NULL,
   `is_active` char(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `menus`
@@ -98,14 +112,14 @@ CREATE TABLE `opening` (
   `judul` varchar(200) NOT NULL,
   `content` text NOT NULL,
   `photo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `opening`
 --
 
 INSERT INTO `opening` (`id`, `judul`, `content`, `photo`) VALUES
-(1, 'Merayakan Hari Guru Bersama', 'Merayakan Hari Guru adalah momen istimewa di mana kita menghormati dedikasi, pengetahuan, dan inspirasi yang diberikan oleh para pendidik dalam membimbing generasi masa depan. Setiap tahun, Hari Guru menjadi kesempatan bagi kita untuk menghargai peran penting mereka dalam membentuk masyarakat dan memajukan bangsa.', 'f5853f0876fcef4d0666a8065812f808.jpg');
+(1, 'Merayakan Hari Guru', 'Merayakan Bersama sama', '272a314f90f9019d26492320e7a0b2bc.jpg');
 
 -- --------------------------------------------------------
 
@@ -133,18 +147,18 @@ CREATE TABLE `petugas` (
   `last_name` varchar(50) DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `petugas`
 --
 
 INSERT INTO `petugas` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714783439, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714977058, 1, 'Admin', 'istrator', 'ADMIN', '0'),
 (3, '::1', 'tasyarojabilasamroi@mail.com', '$2y$10$ufb5qHckmFIQO0j06ACLhOVx/Bf8Z5C9xowPtUOZcIsEP.GOb.CMa', 'tasyarojabilasamroi@mail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1683943097, NULL, 1, 'gadun', 'rojak', NULL, '081511385307'),
-(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714783439, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714977058, 1, 'Admin', 'istrator', 'ADMIN', '0'),
 (3, '::1', 'tasyarojabilasamroi@mail.com', '$2y$10$ufb5qHckmFIQO0j06ACLhOVx/Bf8Z5C9xowPtUOZcIsEP.GOb.CMa', 'tasyarojabilasamroi@mail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1683943097, NULL, 1, 'gadun', 'rojak', NULL, '081511385307'),
-(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714783439, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(1, '127.0.0.1', 'administrator', '$2y$12$zF4ZveNWuqAyRqZVMRGoJO4.hRfv/6Js.oLPX6sTXvyFofmF84QoW', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1714977058, 1, 'Admin', 'istrator', 'ADMIN', '0'),
 (3, '::1', 'tasyarojabilasamroi@mail.com', '$2y$10$ufb5qHckmFIQO0j06ACLhOVx/Bf8Z5C9xowPtUOZcIsEP.GOb.CMa', 'tasyarojabilasamroi@mail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1683943097, NULL, 1, 'gadun', 'rojak', NULL, '081511385307');
 
 -- --------------------------------------------------------
@@ -157,7 +171,7 @@ CREATE TABLE `petugas_groups` (
   `id` int(11) UNSIGNED NOT NULL,
   `petugas_id` int(11) UNSIGNED NOT NULL,
   `group_id` mediumint(8) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `petugas_groups`
@@ -188,14 +202,14 @@ CREATE TABLE `posts` (
   `photo` varchar(100) NOT NULL,
   `is_active` char(1) NOT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `posts`
 --
 
 INSERT INTO `posts` (`id`, `title`, `seo_title`, `content`, `photo`, `is_active`, `date`) VALUES
-(10, 'Melaksanakan SMARTREN Ramadhan 1445H Bersama', 'melaksanakan-smartren-ramadhan-1445h-bersama', 'Kegiatan ini diselenggarakan untuk tidak lain tidak bukan merayakan suasana bulan ramadhan yang diisi dengan tablig akbar oleh para guru serta mengaji dan bersholawat dan berdoa pada kelancaran dan berkah yang ada pada bulan ramadan ini.', '-20240425041647.jpg', 'Y', '2024-04-25');
+(10, 'Melaksanakan SMARTREN Ramadhan 1445H Bersama', 'melaksanakan-smartren-ramadhan-1445h-bersama', 'Kegiatan ini diselenggarakan untuk tidak lain tidak bukan merayakan suasana bulan ramadhan yang diisi dengan tablig akbar oleh para guru serta mengaji dan bersholawat dan berdoa pada kelancaran dan berkah yang ada pada bulan ramadan ini.', '-20240425041647.jpg', 'Y', '2024-05-06');
 
 -- --------------------------------------------------------
 
@@ -208,7 +222,7 @@ CREATE TABLE `profile` (
   `meta_isi` text NOT NULL,
   `meta_judul` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `profile`
@@ -229,7 +243,7 @@ CREATE TABLE `submenus` (
   `sub_title` varchar(50) NOT NULL,
   `sub_url` varchar(100) NOT NULL,
   `is_active` char(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `submenus`
@@ -255,6 +269,12 @@ ALTER TABLE `banners`
 -- Indeks untuk tabel `groups`
 --
 ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `login_attempts`
+--
+ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -287,6 +307,16 @@ ALTER TABLE `profile`
 ALTER TABLE `submenus`
   ADD PRIMARY KEY (`id`),
   ADD KEY `menu_id` (`menu_id`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `login_attempts`
+--
+ALTER TABLE `login_attempts`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

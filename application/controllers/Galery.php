@@ -39,6 +39,7 @@ class Galery extends CI_Controller
 		} else {
 			$data = [
 				'content'	=> $this->input->post('content', true),
+				'judul'	=> $this->input->post('judul', true),
 			];
 
 			if (!empty($_FILES['photo']['name'])) {

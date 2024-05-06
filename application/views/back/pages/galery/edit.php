@@ -19,7 +19,7 @@
 	<div class="form-group row">
 		<label for="galery" class="col-sm-2 col-form-label">Galery Sekolah</label>
 		<div class="col-sm-8">
-			<textarea name="content" id="content" rows="5" class="form-control" value="<?= $content->content ?>"><?= $content->content ?></textarea>
+			<textarea name="content" id="galery" rows="5" class="form-control" value="<?= $content->content ?>"><?= $content->content ?></textarea>
 			<?= form_error('content', '<small class="form-text text-danger">', '</small>') ?>
 		</div>
 	</div>
